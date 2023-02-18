@@ -1,0 +1,72 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}  {{ clinic.name }} {% endblock %}
+
+
+{% block content %}
+   
+
+
+    <!-- Add Clinic Start -->
+    <div class="container-fluid bg-primary my-5 py-5">
+        <div class="container py-5">
+            <div class="row gx-5">
+                <div class="col-lg-6 container-fluid" >
+                    <div class="bg-white text-center rounded p-5">
+                        <h1 class="mb-4">Update Clinic</h1>
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row g-3">
+                                
+                                <div class="col-12 ">
+                                    <input type="text" name="name" value="{{ clinic.name }}" class="form-control bg-light border-0" placeholder="Clinic's Name" style="height: 55px;">
+                                </div>
+                                <div class="col-12 ">
+                                    <textarea name="description"  cols="30" rows="5" class="form-control bg-light border-0" placeholder="Clinic's description">{{  clinic.description  }}</textarea>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <select name="department" value="{{clinic.department}}" class="form-select bg-light border-0" style="height: 55px;">
+                                        <option selected>Choose Department</option>
+                                        <option value="Heart Center" {% if clinic.department == "Heart Center" %} selected {% endif %}>Heart Center</option>
+                                        <option value="Neuroscience Center" {% if clinic.department == "Neuroscience Center" %} selected {% endif %}>Neuroscience Center</option>
+                                        <option value="Obesity Center" {% if clinic.department == "Obesity Center" %} selected {% endif %}>Obesity Center</option>
+                                        <option value="Eye Center" {% if clinic.department == "Eye Center"%} selected {% endif %}>Eye Center</option>
+                                        <option value="Orthopedic Center" {% if clinic.department == "Orthopedic Center" %} selected {% endif %}>Orthopedic Center</option>
+                                        <option value="Pediatric Center" {% if clinic.department == "Pediatric Center" %} selected {% endif %}>Pediatric Center</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="date"  id="date" data-target-input="nearest" >
+                                        <input type="date" name="established_at" value="{{ clinic.established_at }}"
+                                            class="form-control bg-light border-0 datetimepicker-input"
+                                            data-target="#date" data-toggle="datetimepicker" style="height: 55px;">
+                                    </div>
+                                </div>
+                                <div class="col-12 ">
+                                    <div class="time" id="time" data-target-input="nearest">
+                                        <label for="time" class="form-label fs-5" >Choose Image: </label>
+                                        <input class="form-control form-control-lg" id="formFileLg" name="feature_image" type="file" style="display: inline; width: 390px;">                                  
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100 py-3" type="submit" >Update</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add Clinic End -->
+
+
+    
+
+
+   
+
+
+
+{% endblock %}

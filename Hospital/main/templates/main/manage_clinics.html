@@ -1,0 +1,105 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}  {{ clinic.name }} {% endblock %}
+
+
+{% block content %}
+   
+
+
+    <!-- Add Clinic Start -->
+    <div class="container-fluid bg-primary my-5 py-5">
+        <div class="container py-5">
+            <div class="row gx-5">
+                <div class="col-lg-6 container-fluid" >
+                    <div class="bg-white text-center rounded p-5">
+                        <h1 class="mb-4">Add a new Clinic</h1>
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row g-3">
+                                
+                                <div class="col-12 ">
+                                    <input type="text" name="name" class="form-control bg-light border-0" placeholder="Clinic's Name" style="height: 55px;">
+                                </div>
+                                <div class="col-12 ">
+                                    <textarea name="description"  cols="30" rows="5" class="form-control bg-light border-0" placeholder="Clinic's description"></textarea>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <select name="department" class="form-select bg-light border-0" style="height: 55px;">
+                                        <option selected>Choose Department</option>
+                                        <option value="Heart Center">Heart Center</option>
+                                        <option value="Neuroscience Center">Neuroscience Center</option>
+                                        <option value="Obesity Center">Orthopedic Center</option>
+                                        <option value="Eye Center">Eye Center</option>
+                                        <option value="Orthopedic Center">Orthopedic Center</option>
+                                        <option value="Pediatric Center">Pediatric Center</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="date"  id="date" data-target-input="nearest" >
+                                        <input type="date" name="addition_date"
+                                            class="form-control bg-light border-0 datetimepicker-input"
+                                            data-target="#date" data-toggle="datetimepicker" style="height: 55px;">
+                                    </div>
+                                </div>
+                                <div class="col-12 ">
+                                    <div class="time" id="time" data-target-input="nearest">
+                                        <label for="time" class="form-label fs-5" >Choose Image: </label>
+                                        <input class="form-control form-control-lg" id="formFileLg" name="feature_image" type="file" style="display: inline; width: 390px;">                                  
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100 py-3" type="submit" >Add A Clinic</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add Clinic End -->
+
+
+    
+
+
+    <!-- Clinics Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Clinics</h5>
+            </div>
+            <div class="row g-5">
+                {% for clinic in clinics %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                        <div class="service-icon mb-5">
+                            <img src="{{ clinic.feature_image.url }}" class="w-100" />                       
+                        </div>
+                        <h4 class="mb-3">{{ clinic.name }}</h4>
+                        <h6 class="mb-3"> Department: {{ clinic.department }} </h6>
+                        <p class="m-0">{{ clinic.description }}</p>
+                        <p class="m-0">Established at: {{ clinic.established_at }}</p>
+                        <a  style="padding-right: 50px;" class="btn btn-lg btn-warning rounded-pill" href="{% url 'main:update_clinic_page' clinic.id %}">
+                            <i style="width: 40px;">Update</i>
+                        </a>
+                        <a style="margin-left: -100px;" class="btn btn-lg btn-danger rounded-pill" href="{% url 'main:delete_clinic_page' clinic.id %}">
+                            <i style="width: 40px;">Delete</i>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+
+                
+                
+            </div>
+        </div>
+    </div>
+    <!-- Clinics End -->
+
+
+
+
+{% endblock %}
