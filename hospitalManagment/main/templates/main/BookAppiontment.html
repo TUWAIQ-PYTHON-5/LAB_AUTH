@@ -7,6 +7,15 @@
 
 <div class="container">
     <h2>Add a New Appointment</h2>
+    <div class="container">
+      <div class="row">
+       {% if messages %}
+       {% for i in messages %}
+       <div class="alert alert-success" role="alert">
+            {{ i }}
+          </div>
+          {% endfor %}
+          {% endif %}
     
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}

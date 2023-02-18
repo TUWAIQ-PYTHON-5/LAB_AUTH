@@ -3,6 +3,8 @@ from django.http import HttpRequest,HttpResponse
 from .models import User,Clinic,Appointment
 from django.contrib.auth.models import User
 from django.contrib.auth import login,logout,authenticate
+from django.contrib import messages
+from datetime import datetime
 
 
 # Create your views here.
@@ -59,14 +61,30 @@ def show_all_clinec(request:HttpRequest):
         
         return render(request , 'main/controlCL.html' , {'all_clinec':all_clinec})
     return redirect('patient:signin')
-    
+
+def check_availbal_date(date1 : datetime , date2 :datetime) -> bool:
+    if date1 == date2:
+        return True
+    else:
+        return False
+
+
+
 def bookForClinec(request :HttpRequest , clinec_id):
+    
     if request.user.is_authenticated:
         if request.method == 'POST':
+             
             clinec_selected = Clinic.objects.get(id=clinec_id)
             new_appointments = Appointment(appointmentUser = request.user , apclinec = clinec_selected ,case_description=request.POST['case_description'], patient_age = request.POST['patient_age'],appointment_datetime = request.POST['appointment_datetime'] )
-            new_appointments.save()
-            return redirect('main:home')
+            check_dateTime = Appointment.objects.filter(appointment_datetime = request.POST['appointment_datetime'])
+            
+            if check_dateTime :
+                messages.success(request , 'soory chose another date and time')
+
+            else:      
+                new_appointments.save()
+                return redirect('main:home')
         return render(request,'main/BookAppiontment.html')
     
     
