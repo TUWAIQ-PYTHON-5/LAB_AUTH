@@ -1,0 +1,81 @@
+{%extends 'hospital/base.html'%}
+{% load static %}
+
+
+{% block title %} Update Appointment{% endblock %}
+
+
+
+
+{% block content %}
+
+
+<style>
+#form1{padding-top: 80px;
+}
+
+</style>
+
+<div class="container">
+
+<div class="container "id="form1" style="width: 600px; background-color: rgb(223, 230, 234); border-radius: 30px; ">
+    <h2>Update appointment</h2><hr class="my-4">
+    <br>
+
+<form action=""  method="POST">
+    {% csrf_token %}
+
+
+    
+<h3>{{request.user.first_name}}</h3>
+
+
+
+
+<div class="form-group">
+      <label for="Textarea1">case_description</label>
+      <textarea class="form-control" name="case_description" id="Textarea1" rows="3" placeholder="  Write your case description ">{{appointment.case_description}}</textarea>
+    </div>
+
+
+    <div class="form-floating mt-2">
+        <input name="patient_age" type="number" class="form-control" id="floatingInput" value="{{appointment.patient_age}}">
+        <label for="floatingInput">Age</label>
+    </div>
+
+
+
+    <div class="mt-3">
+        <label class="form-label"> Appointment_datetime :</label>
+        <input type="datetime-local" class="form-control" name="appointment_datetime"value="{{appointment.appointment_datetime}}"  />
+      </div>
+
+
+
+
+
+      <h4 class="mb-3">is_attended</h4>
+
+      <div class="my-3">
+      
+        <div >
+          <input id="Y" name="is_attended" type="radio" value="True" class="form-check-input" >
+          <label class="form-check-label" for="Y">YES</label>
+        </div>
+        <div >
+          <input id="N" name="is_attended" type="radio" value="False" class="form-check-input" >
+          <label class="form-check-label" for="N">NO</label>
+        </div>
+      </div>
+      <br>
+      <div class="mx-auto" style="width: 300px; ">  <button type="submit" class="btn btn-secondary">Submit</button></div> 
+  
+
+</form>
+
+<br><br>
+   </div>
+  </div>
+
+
+{% endblock %}

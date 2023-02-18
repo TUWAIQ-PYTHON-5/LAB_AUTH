@@ -1,0 +1,64 @@
+{%extends 'hospital/base.html'%}
+{% load static %}
+
+
+{% block title %}  Appointments page{% endblock %}
+
+
+
+
+{% block content %}
+<head>  
+<style>
+
+.main{   
+ padding-top: 50px;
+    width: 200px;
+    height:200px;
+    float: left;
+    margin-left:150px;
+    margin-bottom :500px; ;
+
+}
+
+
+</style>
+
+
+
+
+
+   <div class="main">
+    <div class="card" style="width:300px; height: 400px;">
+      <div class="card-body">
+        <h5 class="card-title">{{ request.user.first_name }}</h5>
+        <p>Case_description : {{appointment.case_description}}</p>
+        <p>{{appointment.patient_age}}   <br> established_at: {{appointment.is_attended}}</p>
+
+        {% if request.user.is_staff %}
+        <div class="m-3 d-flex gap-2">
+            <a href="{% url 'hospital:delete_appointment' appointment.id %}" class="btn btn-secondary">Delete</a>
+            <a href="{% url 'hospital:update_appointment' appointment.id %}" class="btn btn-secondary">Update</a>
+
+           </div>
+       {% endif %}
+        </div>
+     </div>
+ </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
