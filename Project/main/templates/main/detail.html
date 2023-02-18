@@ -1,0 +1,41 @@
+{% extends 'main/home.html' %}
+
+{% block title %} Details for {{ clinic.name }}  {% endblock %}
+
+
+{% block content %}
+<div class="row row-cols-1 row-cols-md-2 g-4">
+
+    <div class="col">
+      <div class="card">
+        <img src="{{ clinic.image.url }}" class="w-100" />
+        <div class="card-body">
+          <h5 class="card-title">{{ clinic.name }}</h4></a>
+          </h5>
+          <p class="card-text">Description :{{ clinic.description}}</p><br>
+       <p>Feature image: <img src="{{item.image_field.urls}}"/> </p><br>
+      <p>Department:{{ clinic.department }}</p><br>
+    <p>established at{{clinic.established_at}}</p><br>
+    <p> is attended : {{appointment.is_attended}}</p>
+    <div class="m-3 d-flex gap-2">
+      {% if perms.main.update_clinic %}
+      <a href="{% url 'main:update_clinic' clinic.id %}" class="btn btn-primary">Update</a>
+      {% endif %}
+      {% if perms.main.delete_clinic %}
+      <a href="{% url 'main:delete_clinic' clinic.id %}" class="btn btn-danger">Delete</a>
+      {% endif %}
+  
+  </div>
+
+        </div>
+      </div>
+    </div>
+    
+
+
+
+
+   
+
+
+{% endblock %}

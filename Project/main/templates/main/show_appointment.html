@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+   {% block title %}{% endblock %}
+   
+   {% block content %}
+   <div class="container" style="padding-top: 10%;">
+   <div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for appointment in show_appointment %}
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><a href="{% url 'main:appointment_detail' appointment.id %}" class="text-dark"><h5 class="mt-4">Clinic name :{{ appointment.clinic_name }}</h5></a>
+          </h5>
+         
+          <p>Clinic name : {{appointment.clinic_name}}</p>
+      <p>Case description: {{ appointment.case_description }}</p><br>
+    <p>Patient age: {{appointment.patient_age}}</p><br>
+    <p>appointment datetime : {{appointment.appointment_datetime}}</p><br>
+    <p> is attended : {{appointment.is_attended}}</p>
+
+        </div>
+      </div>
+    </div>
+   </div>
+    {% endfor %}
+
+    
+  {% endblock %}
