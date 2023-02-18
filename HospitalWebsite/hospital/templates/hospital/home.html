@@ -1,0 +1,65 @@
+{%extends 'hospital/base.html'%}
+{% load static %}
+
+
+{% block title %} Home page{% endblock %}
+
+
+
+
+{% block content %}
+<head>  
+<style>
+img{height: 200px; ;
+width: 50px; ;}
+.main{   
+ 
+    width: 250px;
+    height: 180px;
+    float: left;
+    margin-left:74px;
+    margin-bottom :290px; ;
+
+}
+.container{padding-top: 50px;}
+
+</style>
+
+
+<div class="container ">
+  <h2> Our Hospital</h2>
+<hr></div>
+ 
+
+
+
+
+{% for clinic in latest_clinic %}
+   <div class="main">
+    <div class="card" style="width: 300px; height: 450px;">
+      <img src="{{clinic.feature_image.url}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{clinic.name}}</h5>
+        <p>{{clinic.department}}   <br> established_at: {{clinic.established_at}}</p>
+        <a href="{% url 'hospital:details_page' clinic.id %}">  <button type="button" class="btn btn-outline-dark">Read more</button></a>
+        </div>
+     </div>
+ </div>
+</div>
+
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
