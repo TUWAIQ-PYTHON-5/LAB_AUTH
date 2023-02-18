@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+<div class="container">
+    <h2>Our Clinices</h2>
+
+    <div class="row">
+        {% for clinic in clinics %}
+            
+            <div class="col-3">
+                <div class="p-4 shadow" >
+                    <a href="{% url 'main:clinicDetails' clinic.id %}"><h4>{{ clinic.name }}</h4></a>
+                    <p>{{ clinic.description }}</p>
+                    <h6>Date: {{ clinic.established_at   }}</h6>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}
