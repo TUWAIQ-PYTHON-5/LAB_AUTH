@@ -1,0 +1,118 @@
+{% extends 'Clincs/index.html' %}
+
+{% block title %} Sign In {% endblock %}
+
+{% block content %}
+
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+    
+        <form method="post" action="">
+            {% csrf_token %}
+            
+            {% if msg %}
+              <h6 class="text-danger" >{{msg}}</h6>
+            {% endif %}
+          <div class="modal-body">
+            <div class="form-title text-center">
+              <h4>Login</h4>
+            </div>
+            <div class="d-flex flex-column text-center">
+              <form>
+                <div class="form-group">
+                  <input type="username" class="form-control" id="username"placeholder="username">
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" id="password1" placeholder="Your password...">
+                </div>
+                <input type="submit" value="login" />
+                </form>
+
+          </div>
+        </div>
+
+
+          <div class="modal-footer d-flex justify-content-center">
+            <div class="signup-section">Not a member yet? <a href="{% url 'accounts:register_user'%}" class="text-info"> Sign Up</a>.</div>
+          </div>
+      </div>
+    </div>
+
+
+<!--
+    <form method="POST" action="/accounts/login/">
+      <label style="font-weight:bold;">Login:</label>
+      <label for="login_username">Username: </label>
+      <input id="id_login_username" name="login_username" type="text"
+      value="{{ username }}" />
+      <label for="login_password">Password:</label>
+      <input id="id_login_password" name="login_password" type="password" />
+      <input type="submit" value="login" />
+      </form>
+
+-->
+
+    <script>
+
+
+$(document).ready(function() {             
+$('#loginModal').modal('show');
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+});
+
+</script>
+
+  
+
+<style>
+
+.container {
+  padding: 2rem 0rem;
+}
+
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 400px;
+  }
+  .modal-dialog .modal-content {
+    padding: 1rem;
+  }
+}
+.modal-header .close {
+  margin-top: -1.5rem;
+}
+
+.form-title {
+  margin: -2rem 0rem 2rem;
+}
+
+.btn-round {
+  border-radius: 3rem;
+}
+
+.delimiter {
+  padding: 1rem;
+}
+
+.social-buttons .btn {
+  margin: 0 0.5rem 1rem;
+}
+
+.signup-section {
+  padding: 0.3rem 0rem;
+}
+                                                                                                                                                                                                              
+</style>
+
+
+
+{% endblock %}

@@ -34,7 +34,7 @@
 - - case_description
 - - patient_age
 - - appointment_datetime
-- - is_attended (default is False, only manager can change this field True)
+- -  (default is False, only manager can change this field True)
 
 
 ### Add user Accounts (register, login, logout)
@@ -49,3 +49,8 @@
 
 ### Bonus
 When patient books an appointmnet with the clinic , check if the clinic is free on that date & time (that there is no previous appointment on the same date & time).
+
+
+
+
+
