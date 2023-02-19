@@ -40,6 +40,7 @@ class Appointment(models.Model):
     patient_age = models.ImageField(default= 20)
     date  = models.DateTimeField( )
     description = models.TextField()
-    
+    is_attended  = models.BooleanField(default=False)
     def __str__(self) -> str:
         return f"{self.clinic}"
+    
