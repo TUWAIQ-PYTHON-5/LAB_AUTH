@@ -1,0 +1,49 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Details for {{ clinic.name }}  {% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+
+    <h1>{{ clinic.name }}</h1>
+    <h6>Established on: {{ clinic.established_at}}</h6>
+    <div class="m-3 d-flex gap-2"><a href="{% url 'main:updateClinic' clinic.id %}" class="btn btn-primary">update</a>
+    <p>{{ clinic.description }}</p>
+    <h6>Under the department of: {{ clinic.department}}</h6>
+
+
+    <hr/>
+
+    <div  class="m-3">
+        <h3>Appoinments:</h3>
+        {% for appointment in appointments  %}
+            <div class="p-2 border mt-2">
+
+                <h5>{{ appointment.appointment_datetime}}</h5>
+                <h6>{{ appointment.is_attended }} Attendance</h6>
+                <p>{{ appointment.case_description }}</p>
+
+            </div>
+        {% endfor %}
+    </div>
+
+    <div>
+        <h3>Add Appoinments</h3>
+        <div>
+            <form action="{% url  'main:addAppointment' appointment.id %}" method="post">
+                {% csrf_token %}
+
+                <input type="text" name="patient_age" class="form-control" placeholder="Age " /> 
+
+                <textarea name=" case_description" class="form-control" placeholder="your case description.."></textarea>
+
+                <input class="btn btn-primary" type="submit" value="Add Comment" />
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
