@@ -5,9 +5,6 @@ from .models import Clinic
 def home_page(request:HttpRequest):
     return render(request, 'main/home_page.html')
 
-def doctors_page(request:HttpRequest):
-    return render(request, 'main/doctors_page.html')
-
 def clinics_page(request:HttpRequest):
     clinic_all = Clinic.objects.all
     clinics_info = {'clinic_all':clinic_all}

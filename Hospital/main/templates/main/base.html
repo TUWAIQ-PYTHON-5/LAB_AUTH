@@ -48,7 +48,14 @@
         <ul>
           <li><a class="nav-link scrollto" href="{% url 'main:home_page' %}">Home</a></li>
           <li><a class="nav-link scrollto" href="{% url 'main:clinics_page' %}">Clinies</a></li>
-          </ul>
+          <!--.is_authenticated-->
+          {% if request.user.is_authenticated %}
+          <li><a class="nav-link scrollto" href="#">{{request.user.username}}</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'accounts:user_logout' %}">Logout</a></li>
+          {% else %}
+          <li><a class="nav-link scrollto" href="{% url 'accounts:user_login' %}">Login / Register</a></li>
+          {% endif %}
+        </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
 
