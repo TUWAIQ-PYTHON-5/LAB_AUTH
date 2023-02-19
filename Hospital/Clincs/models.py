@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
+
 Clinc_dep = (
     ("Heart Center", "Heart Center"),
     ("Neuroscience Center", "Neuroscience Center"),
@@ -19,7 +20,7 @@ class Clinic(models.Model):
     department = models.CharField(    
         max_length = 50,
         choices = Clinc_dep,
-        default = 'department')
+        default = 'Department')
     established_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:

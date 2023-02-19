@@ -13,51 +13,48 @@
           <span aria-hidden="true">×</span>
         </button>
       </div>
-    
-        <form method="post" action="">
-            {% csrf_token %}
-            
-            {% if msg %}
-              <h6 class="text-danger" >{{msg}}</h6>
-            {% endif %}
-          <div class="modal-body">
-            <div class="form-title text-center">
-              <h4>Login</h4>
-            </div>
-            <div class="d-flex flex-column text-center">
-              <form>
-                <div class="form-group">
-                  <input type="username" class="form-control" id="username"placeholder="username">
-                </div>
-                <div class="form-group">
-                  <input type="password" class="form-control" id="password1" placeholder="Your password...">
-                </div>
-                <input type="submit" value="login" />
-                </form>
-
-          </div>
+      <div class="modal-body">
+        <div class="form-title text-center">
+          <h4>Login</h4>
         </div>
-
-
+        <div class="d-flex flex-column text-center">
+          
+            <div class="form-group">
+              
+        <form method="post" action="">
+            {% csrf_token %}            
+            {% if msg %}
+                <h6 class="text-danger" >{{msg}}</h6>
+            {% endif %}
+              <input type="text" class="form-control" id="username"placeholder="username" name="username">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" id="password" placeholder="Your password..." name="password">
+            </div>
+            <button type="submit" class="btn btn-info btn-block btn-round">Login</button>
+          </form>
+     
+        </div>
+    </div>
           <div class="modal-footer d-flex justify-content-center">
             <div class="signup-section">Not a member yet? <a href="{% url 'accounts:register_user'%}" class="text-info"> Sign Up</a>.</div>
           </div>
       </div>
-    </div>
+  </div>
+</div>
 
 
-<!--
-    <form method="POST" action="/accounts/login/">
-      <label style="font-weight:bold;">Login:</label>
-      <label for="login_username">Username: </label>
-      <input id="id_login_username" name="login_username" type="text"
-      value="{{ username }}" />
-      <label for="login_password">Password:</label>
-      <input id="id_login_password" name="login_password" type="password" />
-      <input type="submit" value="login" />
-      </form>
 
--->
+
+
+
+
+
+
+
+
+
+
 
     <script>
 

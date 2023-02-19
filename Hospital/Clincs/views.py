@@ -12,7 +12,7 @@ def home(request : HttpRequest):
     return render(request, 'Clincs/home.html')
 
 
-def book(request : HttpRequest):
+def booking(request : HttpRequest):
     if not request.user.is_staff:
         return redirect("accounts:login_user")
     if request.method == "POST":
@@ -23,4 +23,4 @@ def book(request : HttpRequest):
         department = request.POST["department"], 
         booking.save()
         return redirect("Clincs:index")
-    return render(request, "Clincs/book.html")
+    return render(request, "Clincs/booking.html")
