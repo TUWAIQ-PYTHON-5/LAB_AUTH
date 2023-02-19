@@ -1,0 +1,54 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Update Clinic {% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+<h2>Update Clinc</h2>
+
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="mt-3">
+      <label class="form-label">Name</label>
+      <input type="text" name="name" class="form-control" value="{{ clinic.name }}" />
+    </div>
+
+    <div class="mt-3">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" name="description">{{ clinic.description }}</textarea>
+    </div>
+
+    <div class="mt-3">
+      <label class="form-label">Clinic</label>
+      <select name="department" value="{{clinic.department}}" class="form-select" aria-label="Default select example">
+          <option value="Heart Center" {% if clinic.department == "HEART_CENTER" %} selected {% endif %}>Heart Center</option>
+          <option value="Neuroscience Center" {% if clinic.department == "NEUROSCIENCE_CENTER" %} selected {% endif %}>Neuroscience Center</option>
+          <option value="Obesity Center" {% if clinic.department == "OBESITY_CENTER" %} selected {% endif %}>Obesity Center</option>
+          <option value="Eye Center" {% if clinic.department == "EYE_CENTER" %} selected {% endif %}>Eye Center</option>
+          <option value="Orthopedic Center" {% if clinic.department == "ORTHOPEDIC_CENTER" %} selected {% endif %}>Orthopedic Center</option>
+          <option value="Pediatric Center" {% if clinic.department == "PEDIATRIC_CENTER" %} selected {% endif %}>Pediatric Center</option>
+        </select>
+      </div>
+
+      <div class="mt-3">
+        <label>Choose File:</label>
+        <input type="file" name="feature_image" class="form-control"/>
+      </div>
+    
+      <div class="mt-3">
+        <label class="form-label">Established at:</label>
+        <input type="date" value="{{ clinic.established_at }}" class="form-control" name="established_at"  />
+      </div>
+
+      <br/>
+      <input type="submit" class="btn btn-primary" value="Update Clinic" />
+
+    
+
+</form>
+
+</div>
+{% endblock %}

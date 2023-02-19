@@ -1,0 +1,111 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %} Clinic {% endblock %}
+
+{% block content %}
+
+<div class="main-content paddsection">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="row">
+            <div class="container-main single-main">
+              <div class="col-md-12">
+                <div class="block-main mb-30">
+                  <div class="container">
+                    <img src="{{ clinic.feature_image.url }}" class="img-responsive w-100" alt="reviews2">
+                    <div class="content-main single-post padDiv">
+                      <div class="journal-txt ms-2">
+                        <h4 style="color: white;">{{ clinic.name }}</h4>
+                      </div>
+                      <div class="post-meta">
+                        <ul class="list-unstyled mb-0">
+                          <li class="date">Established at: {{ clinic.established_at }}</li>
+                        </ul>
+                      </div>
+                      <p class="mb-30 ms-2">{{ clinic.description }}</p>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- ======= Appointment Section ======= -->
+<section id="appointment" class="appointment section-bg">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Make an Appointment</h2>
+      </div>
+
+      <form action="{% url 'main:add_appointment' clinic.id %}" method="post">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-md-4 form-group">
+            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+            <div class="validate"></div>
+          </div>
+          <div class="col-md-4 form-group mt-3 mt-md-0">
+            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
+            <div class="validate"></div>
+          </div>
+          <div class="col-md-4 form-group mt-3 mt-md-0">
+            <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+            <div class="validate"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 form-group mt-3">
+            <label for="date">Appointment Date: </label>
+            <input type="date" name="appointment_datetime" class= "ms-4" style="padding-left: 50px; padding-right: 50px; padding-top: 5px; padding-bottom: 5px;"/>
+            <div class="validate"></div>
+          </div>
+          <div class="col-md-4 form-group mt-3">
+            <select name="department" id="department" class="form-select">
+              <option value="">Select Clinic</option>
+              <option value="HEART_CENTER">Heart Center</option>
+              <option value="NEUROSCIENCE_CENTER">Neuroscience Center</option>
+              <option value="OBESITY_CENTER">Obesity Center</option>
+              <option value="EYE_CENTER">Eye Center</option>
+              <option value="ORTHOPEDIC_CENTER">Orthopedic Center</option>
+              <option value="PEDIATRIC_CENTER">Pediatric Center</option>
+            </select>
+            <div class="validate"></div>
+          </div>
+          <div class="col-md-4 form-group mt-3">
+            <input type="tel" class="form-control" name="patient_age" id="patient_age" placeholder="Your Age" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+          </div>
+            <div class="validate"></div>
+        <div class="form-group mt-3">
+          <textarea class="form-control" name="case_description" rows="5" placeholder="Description"></textarea>
+          <div class="validate"></div>
+        </div>
+        <div class="text-center"><button type="submit" style="border-radius: 10px; margin-top: 10px; padding: 8px;">Make an Appointment</button></div>
+    </form>
+      
+
+    </div>
+  </section><!-- End Appointment Section -->
+
+  <div  class="container mt-3">
+    <h3>Appointments :</h3>
+    {% for appointment in appointments  %}
+        <div class="p-2 border mt-2">
+            <h5>{{ appointment.user.first_name }}</h5>
+            <h6>{{ appointment.appointment_datetime }}</h6>
+            {% if appointment.is_attended %}
+                <p>Has attended</p>
+            {% else %}
+                <p>Didn't attended</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

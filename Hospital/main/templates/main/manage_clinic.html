@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Manage Clinic {% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+    <button type="button" class="btn btn-secondary" style="margin-top: 8px; margin-bottom: 8px;"><a href="{% url 'main:add_clinic' %}" class="text-bg-secondary">Add Clinic</a></button>
+    <h2 style="color: white;"> Clinic !</h2>
+    <div class="row">
+        <div class="row">
+            {% for clinic in clinics %}
+                <div class="col-3">
+                    <div class="p-4 shadow mt-2" style="background-color: darkgray;">
+                        <a href="{% url 'main:clinic_detail' clinic.id %}"><img src="{{ clinic.feature_image.url }}" class="img-responsive w-100" alt="img"></a>
+                        <a href="{% url 'main:clinic_detail' clinic.id %}"><h4 style="color: white;">{{ clinic.name }}</h4></a>
+                        <div class="transbox mb-2">
+                            <a href="{% url 'main:update_clinic' clinic.id %}" class="btn btn-primary p-1 h-25 ">Update</a>
+                            <a href="{% url 'main:delete_clinic' clinic.id %}" class="btn btn-danger p-1 h-25 ">Delete</a>
+                        </div>
+                        <h6>{{ clinic.description }}</h6>
+                        <h6>{{ clinic.department }}</h6>
+                        <h6>Established at: {{ clinic.established_at }}</h6>
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
+</div>
+{% endblock %}

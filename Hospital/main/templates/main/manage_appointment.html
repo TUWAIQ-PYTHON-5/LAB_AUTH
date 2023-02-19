@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Manage Appointment {% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2> Appointment !</h2>
+    <div class="row">
+        <div class="row">
+            {% for appointment in appointments %}
+                <div class="col-3">
+                    <div class="p-4 shadow" >
+                        <h6>Clinic: {{ appointment.clinic }}</h6>
+                        <h6>Patient: {{ appointment.user }}</h6>
+                        <h6>Case description: {{ appointment.case_description }}</h6>
+                        <h6>Patient age: {{ appointment.patient_age }}</h6>
+                        <h6>Appointment date: {{ appointment.appointment_datetime }}</h6>
+                        <h6>Is it attended: 
+                            {% if appointment.is_attended %}
+                             Yes
+                            {% else %}
+                             No
+                            {% endif %}
+
+                        </h6>
+                        <a href="{% url 'main:update_appointment' appointment.id %}" class="btn btn-primary p-1 h-25 ">Update</a>
+                        <a href="{% url 'main:delete_appointment' appointment.id %}" class="btn btn-danger p-1 h-25 ">Delete</a>
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
+</div>
+{% endblock %}

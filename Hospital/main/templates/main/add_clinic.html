@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Add a New Clinic {% endblock %}
+
+{% block content %}
+
+<div class="container">
+<h2>Add a New Clinic</h2>
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="transbox">
+        <div class="row">
+            <div class="col" id = "box">
+                <input type="text" name="name" class="form-control m-2 text-dark" placeholder="Name"/>
+                <textarea class="form-control m-2 text-dark" name="description" placeholder="Description"></textarea>
+                <label for="date">Established at: </label>
+                <input type="date" name="established_at" class= "m-2"/>
+                <select name="department" id="department">
+                    <option value="HEART_CENTER">Heart Center</option>
+                    <option value="NEUROSCIENCE_CENTER">Neuroscience Center</option>
+                    <option value="OBESITY_CENTER">Obesity Center</option>
+                    <option value="EYE_CENTER">Eye Center</option>
+                    <option value="ORTHOPEDIC_CENTER">Orthopedic Center</option>
+                    <option value="PEDIATRIC_CENTER">Pediatric Center</option>
+                </select>
+                <br>
+                <label>Choose File:</label>
+                <input type="file" name="feature_image" class="form-control"/>
+                <input type="submit" class="btn btn-dark mt-3" value="New Clinic" />
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+
+
+
+{% endblock %}

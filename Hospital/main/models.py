@@ -4,18 +4,18 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Clinic(models.Model):
 
-    # CLINIC_CHOICES = (
-    #     ("HEART_CENTER","Heart Center"), 
-    #     ("NEUROSCIENCE_CENTER","Neuroscience Center"), 
-    #     ("OBESITY_CENTER","Obesity Center"), 
-    #     ("EYE_CENTER","Eye Center"),
-    #     ("ORTHOPEDIC_CENTER","Orthopedic Center"),
-    #     ("PEDIATRIC_CENTER","Pediatric Center"),
-    # )
+    CLINIC_CHOICES = (
+        ("HEART_CENTER","Heart Center"), 
+        ("NEUROSCIENCE_CENTER","Neuroscience Center"), 
+        ("OBESITY_CENTER","Obesity Center"), 
+        ("EYE_CENTER","Eye Center"),
+        ("ORTHOPEDIC_CENTER","Orthopedic Center"),
+        ("PEDIATRIC_CENTER","Pediatric Center"),
+    )
     name = models.CharField(max_length=1024)
     feature_image = models.ImageField(upload_to="images/", default="images/default.jpg")
     description = models.TextField()
-    department = models.TextChoices('MedalType', 'HEART_CENTER NEUROSCIENCE_CENTER OBESITY_CENTER EYE_CENTER ORTHOPEDIC_CENTER PEDIATRIC_CENTER')
+    department = models.CharField(max_length=19,choices=CLINIC_CHOICES,default="EYE_CENTER")
     established_at = models.DateField(auto_now_add=True)
     
     def __str__(self) -> str:

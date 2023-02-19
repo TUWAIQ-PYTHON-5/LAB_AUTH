@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Hospital {% endblock%}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,500,500i,600,600i,700,700i,900,900i" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&Alfa+Slab+One&display=swap" rel="stylesheet">   
+    <link rel="stylesheet" href="{% static 'css/Style.css' %}">
+      <!-- Vendor CSS Files -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <style>       
+        body  {
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            background-image: url({% static 'img/index.jpg' %});
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center">
+
+        <h1 class="logo me-auto"><a href="http://127.0.0.1:8000/">Hospital</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+        <nav id="navbar" class="navbar order-last order-lg-0">
+            <ul>
+            <li><a class="nav-link scrollto active" href="http://127.0.0.1:8000/">Home</a></li>
+            <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/clinic">Clinics</a></li>
+            <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/appointment">Appointment</a></li>
+            {% if perms.main.add_clinic %}
+              <li class="nav-item"><a href="{% url 'main:manage_clinic' %}" class="nav-link">Manage Clinc</a></li>
+            {% endif %}
+            {% if perms.main.add_appointment %}
+              <li class="nav-item"><a href="{% url 'main:manage_appointment' %}" class="nav-link">Manage Appointment</a></li>
+            {% endif %}
+            {% if request.user.is_authenticated %}
+              <li class="nav-item"><a href="{% url 'accounts:logout_user' %}" class="nav-link">logout</a></li>
+            {% else %}
+              <li class="nav-item"><a href="{% url 'accounts:login_user' %}" class="nav-link">Login</a></li>
+            {% endif %}
+            </ul>
+            <form class="d-flex m-2" action="{% url 'main:search' %}" method="POST">
+                {% csrf_token %}
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </form> 
+        </nav><!-- .navbar -->
+        <a href="http://127.0.0.1:8000/appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a>
+        </div>
+    </header>
+    <main id="main">
+      {% block content %}
+        
+      {% endblock %}
+    </main>
+    
+
+  <!-- ======= Footer ======= -->
+  <footer class="footer">
+    <div class="container d-md-flex py-4">
+
+    <div class="me-md-auto text-center text-md-start">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Medilab</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div><!-- End Footer -->
+  </footer>
+  
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="static/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="static/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="static/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/static/js/main.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>
