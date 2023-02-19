@@ -1,0 +1,146 @@
+
+{% extends 'main/index.html' %}
+
+{% block title %} Details for {{ i.name }}  {% endblock %}
+
+
+{% block content %}
+
+<body class="sub_page">
+
+    <div class="hero_area">
+  
+      <div class="hero_bg_box">
+        <img src="" alt="">
+      </div>
+  
+     <!-- header section strats -->
+     <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <span>
+              Dooha hospital
+            </span>
+          </a>
+  
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+  
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'main:index_page' %}#Home">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:about_page' %}"> About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:departments_page' %}">Departments</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:doctors_page' %}">Doctors</a>
+              </li>
+              {% if request.user.is_authenticated %}
+              <li class="nav-item"><a href="#" class="nav-link">{{ request.user.first_name }}</a></li>
+              <li class="nav-item"><a href="{% url 'accounts:logout_user' %}" class="nav-link">logout</a></li>
+              {% else %}
+              <li class="nav-item"><a href="{% url 'accounts:login_user' %}" class="nav-link">Login</a></li>
+              {% endif %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:contact_page' %}">Contact Us</a>
+              </li>
+              <form class="form-inline">
+                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </form>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+    </div>
+
+      <section class="about_section layout_padding">
+        <div class="container  ">
+          <div class="row">
+            <div class="col-md-6 ">
+              <div class="img-box">
+                <img src="{{ clinc.image.url }}" alt="">
+
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="detail-box">
+                <div class="heading_container">
+                  <h2>
+                    {{ clinc.name }}
+                </h2>
+                </div>
+                <p>
+                {{ clinc.description }}
+
+              </p>
+              <p>
+                <h6><br> Department: {{ clinc.departments}} </h6>
+                Established At : {{clinc.established_at}}
+              </p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="m-3 d-flex gap-2">
+          {% if perms.clinc.delete_clinc %}
+            <a href="{% url 'main:update_clinc' clinc.id %}" class="btn btn-primary">update</a>
+            <a href="{% url 'main:delete_clinc' clinc.id %}" class="btn btn-danger">delete</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <hr/>
+
+    <div  class=" mt-3">
+        <h3>Reviews :</h3>
+        {% for review in reviews  %}
+            <div class="p-2 border mt-2">
+
+                <h5>{{ review.user.first_name }}</h5>
+                <p>{{ review.content }}</p>
+
+            </div>
+        {% endfor %}
+    </div>
+
+    <hr />
+
+    <div class="mt-3">
+        <h3>Add Review</h3>
+        <div>
+            <form action="{% url  'main:add_review' clinc.id %}" method="post">
+                {% csrf_token %} 
+
+                <textarea name="content" class="form-control mt-3" placeholder="Your Review here..."></textarea>
+
+
+                <input class="btn btn-primary mt-2" type="submit" value="Add Review" />
+
+            </form>
+        </div>
+    </div>
+
+
+
+</div>
+<br><br><br>
+</body>
+
+
+{% endblock %}
