@@ -15,6 +15,8 @@ urlpatterns = [
     path("Clinic/appointments/", views.appointments, name="appointments"),
     path("Clinic/update/<clinic_id>", views.update, name="update"),
     path("Clinic/delete/<clinic_id>", views.delete, name="delete"),
+    path("Appointment/delete/<appointment_id>", views.appointments_delete, name="appointments_delete"),
+    path("Appointment/update/<appointment_id>", views.appointments_update, name="appointments_update"),
    
     # path("Contact/" , views.contact , name= "contact_page"),
 ]

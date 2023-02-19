@@ -33,7 +33,7 @@ def add(request : HttpRequest ):
            Clinic(
             name = request.POST["name"] ,
             description = request.POST["description"], 
-            image =request.FILES["image"]
+            image = request.FILES["image"],
             ).save()
     
     
@@ -88,6 +88,9 @@ def update(request : HttpRequest , clinic_id ):
             return redirect("url_main:index_page")
     return render(request , "main/update.html" ,  {"clinic" : clinic})
 
+
+
+
 def mange(request : HttpRequest):
     
     result = Clinic.objects.all()
@@ -109,4 +112,26 @@ def appointments (request : HttpRequest ):
     }
     
     return render(request , "main/appointment.html" , context)
+
+
+def appointments_delete(request : HttpRequest , appointment_id ):
     
+    appointments = Appointment.objects.get(id=appointment_id)
+    appointments.delete()
+    
+    return render(request , "main/appointment.html")
+
+
+
+
+def appointments_update(request : HttpRequest , appointment_id ):
+
+    appointment = Appointment.objects.get(id = appointment_id)
+
+    if request.method == "POST":
+            appointment.patient_age = request.POST["age"]
+            appointment.date = request.POST["date"]
+            appointment.description = request.POST["description"]
+            appointment.save()
+            return redirect("url_main:index_page")
+    return render(request , "main/appointments_update.html" ,  {"appointment" : appointment})
