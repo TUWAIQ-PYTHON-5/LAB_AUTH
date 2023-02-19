@@ -1,0 +1,34 @@
+{% extends 'main/home.html' %}
+
+{% block title %} {% endblock %}
+
+
+{% block content %}
+<div class="row row-cols-1 row-cols-md-2 g-4">
+
+    <div class="col">
+      <div class="card">
+        <img src="{{ clinic.image.url }}" class="w-100" />
+        <div class="card-body">
+          <h5 class="card-title">Patient name :{{appointment.request.user.username}}</h4></a>
+          </h5>
+          <p class="card-text">Case description:{{ appointment.case_description }}</p><br>
+       
+      <p>Patient age: {{appointment.patient_age}}</p><br>
+    <p>appointment datetime :{{appointment.appointment_datetime}}</p>
+    
+    <div class="m-3 d-flex gap-2">
+      {% if perms.main.update_appointment %}
+      <a href="{% url 'main:update_appointment' appointment.id %}" class="btn btn-primary">Update</a>
+      {% endif %}
+      {% if perms.main.delete_appointment %}
+      <a href="{% url 'main:delete_appointment' appointment.id %}" class="btn btn-danger">Delete</a>
+      {% endif %}
+  
+  </div>
+
+        </div>
+      </div>
+    </div>
+    
+{% endblock %}
