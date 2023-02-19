@@ -4,18 +4,18 @@
 
 
 {% block content %}
-
+<section>
 <div class="container">
 
     <h1>{{ clinic.name }}</h1>
     <h6>Established on: {{ clinic.established_at}}</h6>
-    <div class="m-3 d-flex gap-2"><a href="{% url 'main:updateClinic' clinic.id %}" class="btn btn-primary">update</a>
     <p>{{ clinic.description }}</p>
     <h6>Under the department of: {{ clinic.department}}</h6>
+    <div class="m-3 "><a href="{% url 'main:updateClinic' clinic.id %}" class="btn btn-primary">update</a>
 
-
+</section>
     <hr/>
-
+<section>
     <div  class="m-3">
         <h3>Appoinments:</h3>
         {% for appointment in appointments  %}
@@ -28,22 +28,26 @@
             </div>
         {% endfor %}
     </div>
-
+</section>
+<section>
     <div>
         <h3>Add Appoinments</h3>
         <div>
-            <form action="{% url  'main:addAppointment' appointment.id %}" method="post">
+            <form action="{% url  'main:addAppointment' clinic.id %}" method="post">
                 {% csrf_token %}
 
                 <input type="text" name="patient_age" class="form-control" placeholder="Age " /> 
 
-                <textarea name=" case_description" class="form-control" placeholder="your case description.."></textarea>
+                <input type="date" name="appointment_datetime" class="form-control" placeholder="Date " /> 
 
-                <input class="btn btn-primary" type="submit" value="Add appointment" />
+                <textarea name="case_description" class="form-control" placeholder="your case description.."></textarea>
+
+                <input class="btn btn-primary m-3" type="submit" value="Add appointment" />
 
             </form>
         </div>
     </div>
+</section>
 </div>
 
 {% endblock %}

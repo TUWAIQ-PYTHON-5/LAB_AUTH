@@ -32,7 +32,7 @@ def userAuthFun(request : HttpRequest):
 #################################################################
 def userLogoutFun(request : HttpRequest):
     logout(request)
-    return redirect(request, "main/index.html")
+    return redirect("main:index")
 #################################################################
 def newClinicFun(request :HttpRequest): 
     if not request.user.is_staff: 
@@ -45,6 +45,10 @@ def newClinicFun(request :HttpRequest):
 #################################################################
 def clinicDetailsFun(request : HttpRequest, clinic_id): 
     clinic = Clinic.objects.get(id=clinic_id) 
+    appointments = Appointment.objects.filter(clinic=clinic)
+    if request.user.is_authenticated :
+        appointmentsUser = appointments.filter(user = request.user)
+        return render(request, "main/clinicDetails.html", {"clinic" : clinic, "appointments" : appointmentsUser})
     return render(request, "main/clinicDetails.html", {"clinic" : clinic}) 
 #################################################################
 def updateClinicFun(request : HttpRequest, clinic_id): 
@@ -64,13 +68,12 @@ def updateClinicFun(request : HttpRequest, clinic_id):
 def newAppointmentFun(request : HttpRequest, clinic_id): 
     clinic = Clinic.objects.get(id=clinic_id) 
     if request.method == "POST": 
-        newAppointment      = Appointment(clinic=clinic,  
+        newAppointment      = Appointment(user = request.user, clinic=clinic,  
         case_description    = request.POST["case_description"],  
         patient_age         = request.POST["patient_age"],  
-        appointment_datetime= request.POST["is_attended"],  
-        is_attended         = request.POST["case_description"] ) 
+        appointment_datetime= request.POST["appointment_datetime"],) 
         newAppointment.save() 
-    return redirect("main/clinicDetails.html", clinic_id=clinic_id) 
+    return redirect("main:clinicDetails", clinic_id=clinic_id) 
 #################################################################  
 def updateAppointmentFun(request : HttpRequest, appointment_id): 
     appointment = Appointment.objects.get(id=appointment_id) 

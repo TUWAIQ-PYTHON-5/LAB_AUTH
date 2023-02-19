@@ -8,7 +8,7 @@
 <div class="container">
 <h2>Create a new clinic here!</h2>
 
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
     <label class="form-label">Clinic Name</label>
@@ -35,7 +35,7 @@
     <input class= "m-2" name="established_at" type="date"/> 
 
       <br/>
-      <input type="submit" class="btn btn-primary" value="Creat User" />
+      <input type="submit" class="btn btn-primary" value="Creat Clinic" />
 
 </form>
 </div>

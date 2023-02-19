@@ -7,6 +7,7 @@ urlpatterns = [
     path("",                         views.indexfunction,        name="index"),
     path("register",                 views.userRegisterFun,      name="register"),
     path("login",                    views.userAuthFun,          name="login"),
+    path("logout/",                   views.userLogoutFun,        name="logout"),
     path("add/",                     views.newClinicFun,         name="newClinic"),
     path("details/<clinic_id>/",     views.clinicDetailsFun,     name="clinicDetails"),
     path("update/<clinic_id>/",      views.updateClinicFun,      name="updateClinic"),

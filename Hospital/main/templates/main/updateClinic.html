@@ -1,0 +1,45 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Update a Clinic {% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+<h2>Update a Clinic</h2>
+
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label class="form-label">Clinic Name</label>
+    <input type="text" name="name" class="form-control" />
+
+    <label>Choose File:</label> 
+    <input type="file" name="feature_image" class="form-control"/> 
+
+    <label class="form-label">Description</label>
+    <input class="form-control" name="description" type="form-control"/>
+
+    <label class="form-label">Department</label>
+    <select name="department" class="form-select" aria-label="Default select example">
+        <option selected>Open this select menu</option>
+        <option value="HEART_CENTER">HEART CENTER</option>
+        <option value="EUROSCIENCE_CENTER">EUROSCIENCE CENTER</option>
+        <option value="OBESITY_CENTER">OBESITY CENTER</option>
+        <option value="EYE_CENTER">EYE CENTER</option>
+        <option value="ORTHOPEDIC_CENTER">ORTHOPEDIC CENTER</option>
+        <option value="PEDIATRIC_CENTER">PEDIATRIC CENTER</option>
+      </select>
+
+    <label for="date">Established</label> 
+    <input class= "m-2" name="established_at" type="date"/> 
+
+      <br/>
+      <input type="submit" class="btn btn-primary" value="Creat Clinic" />
+
+</form>
+</div>
+
+
+
+{% endblock %}

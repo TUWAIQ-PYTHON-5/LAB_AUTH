@@ -7,8 +7,9 @@ class Clinic (models.Model):
 
     name                = models.CharField(max_length=200)
     feature_image       = models.ImageField(upload_to="images/", default="images/default.jpg")
-    description         = models.BooleanField()
-    department          = models.TextChoices('MedalType', 'HEART_CENTER NEUROSCIENCE_CENTER OBESITY_CENTER EYE_CENTER ORTHOPEDIC_CENTER PEDIATRIC_CENTER')
+    description         = models.TextField()
+    department_choises         = models.TextChoices("department", ['HEART_CENTER', 'NEUROSCIENCE_CENTER', 'OBESITY_CENTER', 'EYE_CENTER', 'ORTHOPEDIC_CENTER', 'PEDIATRIC_CENTER'])
+    department = models.CharField(max_length=200, choices= department_choises.choices)
     established_at      = models.DateTimeField(auto_now_add=True)
     def __str__(self) -> str:
         return f"{self.name} "
