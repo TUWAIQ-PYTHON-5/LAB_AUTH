@@ -1,0 +1,73 @@
+{% extends 'main/base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+
+{% if perms.main.add_appointment %}
+<div class="container">
+
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mt-3">
+      <label class="form-label">Patient name :</label>
+      <input type="text" name="user" class="form-control" />
+    </div>
+
+    <div class="mt-3">
+      <label class="form-label">clinic name :</label>
+      <input type="text" name="clinic_name" class="form-control" />
+    </div>
+
+    <div class="mt-3">
+      <label class="form-label">Case description :</label>
+     <textarea class="form-control" name="case_description"></textarea>
+    </div>
+
+    <div class="mt-3">
+      <label class="form-label">Patient age :</label>
+      <input type="number" class="form-control" name="patient_age"  />
+      </div>
+      
+      <div class="mt-3">
+        <label class="form-label">Appointment datetime</label>
+        <select name="appointment_datetime" class="form-select" aria-label="Default select example">
+            <option selected> Appointment datetime</option>
+            <option value="3 PM">3 PM </option>
+            <option value="3:30 PM">3:30 PM</option>
+            <option value="4 PM">4 PM</option>
+            <option value="4:30 PM">4:30 PM</option>
+            <option value="5 PM">5 PM</option>
+            <option value="6 PM">6 PM</option>
+            <option value="6:30 PM">6:30 PM</option>
+            <option value="7 PM">7 PM</option>
+            <option value="7:30 PM">7:30 PM</option>
+          </select>
+        </div>
+      
+         
+  
+        <br/>
+        <div class="mt-3">
+          
+     <label class="form-label">is attended </label>
+          <select name="is_attended" class="form-select" aria-label="Default select example">
+              <option selected> Select  </option>
+              <option value="yes">yes</option>
+              <option value="no">no</option>
+            </select>
+          </div>
+
+    
+      <input type="submit" class="btn btn-primary" value="New Appointment" />
+
+    
+
+</form>
+{% endif %}
+
+</div>
+
+
+
+{% endblock %}

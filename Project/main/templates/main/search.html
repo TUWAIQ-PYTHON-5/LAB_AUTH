@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+
+
+    {% block title %} {% endblock %}
+    {% block content %}
+    <div class="row">
+      {% if  searched %}
+      <div class="container text-center text-dark">
+      <h3 style="padding-top: 15%;"> You searched for {{searched}}</h3><br>
+      </div>
+      {% for x in search_clinic %}
+      <div class="container-fluid">
+        <div class="card text-dark bg-primary mb-3">
+            <div class="card-body card-secondary">
+              <h5 class="card-title">{{x.name}}</h5>
+              <p class="card-text">{{x.description}}</p><br>
+              <p>Feature image: <img src="{{item.image_field.urls}}"/> </p><br>
+              <p>{{x.department}} <br>Publish date: {{x.established_at}}}</p>
+            </div>
+          </div>
+    </div>
+
+       {% endfor %}
+    
+      {% else %}
+      <h4 style="text-align: center;"> You forgot to search...</h4>
+      <div class="col-3">
+      
+      {% endif %}
+      <div class="containers">
+        
+        {% endblock %}
+      </div>
+
+
+  </div>

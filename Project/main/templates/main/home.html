@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+   {% block title %}{% endblock %}
+   
+   {% block content %}
+
+   <div class="row row-cols-1 row-cols-md-2 g-4" style="padding-top: 5%;">
+    {% for clinic in show_clinic %}
+    <div class="col">
+      <div class="card">
+        <img src="{{ clinic.image.url }}" class="w-100" />
+        <div class="card-body">
+          <h5 class="card-title"><a href="{% url 'main:detail_page' clinic.id %}" class="text-decoration-none"><h4 class="mt-4">{{ clinic.name }}</h4></a>
+          </h5>
+          <p class="card-text"><strong>Description :</strong><br> {{ clinic.description}}</p><br>
+       <p><strong>Feature image :</strong><br> <img src="{{clinic.image_field.urls}}"/> </p><br>
+      <p><strong>Department :</strong><br>{{ clinic.department }}</p><br>
+    <p><strong >established at :</strong><br> {{clinic.established_at}}</p>
+
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+    
+  {% endblock %}
