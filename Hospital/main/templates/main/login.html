@@ -11,6 +11,9 @@
 <form action="" method="POST">
     {% csrf_token %}
 
+    {% if msg %}
+    <h5 class="text-danger"> {{msg}} </h5>
+    {% endif %}
     <label class="form-label">Username</label>
     <input type="text" name="username" class="form-control" />
 

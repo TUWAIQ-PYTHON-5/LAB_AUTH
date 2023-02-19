@@ -25,7 +25,7 @@ def userAuthFun(request : HttpRequest):
             user = authenticate(request, username=request.POST["username"], password=request.POST["password"] ) 
             if user is not None:
                 login(request, user)
-                return redirect(request, "main/index.html")
+                return redirect("main:index")
             else:
                 msg = "Try again"
     return render (request,"main/login.html", {"msg":msg} )        
