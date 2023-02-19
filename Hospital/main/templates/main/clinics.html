@@ -1,0 +1,119 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %} HOME PAGE {% endblock %}
+
+{% block content %}
+
+<section class="page-section" id="contact">
+    <div class="container">
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Clinic Management</h2>
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-home"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Contact Section Form-->
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-10">
+                <a href="{% url 'main:add_new_page' %}" class="btn btn-primary float-end mb-3"><i class="fa fa-plus"></i> Add New Clinic</a>
+                <table class="table table-bordered paleBlueRows col-md-12">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Specialization</th>
+                        <th>Established At</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Heart Center</td>
+                        <td> <img class="img-thumbnail" height="80px" width="80px" src="{% static 'images/hart.jpg' %}"></td>
+                        <td>surgery</td>
+                        <td>12-12-2022</td>
+                        <td>
+                            <a class="btn btn-warning "><i class="fa fa-pen"></i></a>
+                            <a class="btn btn-danger "><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Neuroscience Center</td>
+                        <td> <img class="img-thumbnail" height="80px" width="80px" src="{% static 'images/vvv.jpg' %}"></td>
+                        <td>surgery</td>
+                        <td>12-12-2022</td>
+                        <td>
+                            <a class="btn btn-warning "><i class="fa fa-pen"></i></a>
+                            <a class="btn btn-danger "><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Obesity Center</td>
+                        <td> <img class="img-thumbnail" height="80px" width="80px" src="{% static 'images/vit.jpg' %}"></td>
+                        <td>surgery</td>
+                        <td>12-12-2022</td>
+                        <td>
+                            <a class="btn btn-warning "><i class="fa fa-pen"></i></a>
+                            <a class="btn btn-danger "><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Eye Center</td>
+                        <td> <img class="img-thumbnail" height="80px" width="80px" src="{% static 'images/eys.jpg' %}"></td>
+                        <td>surgery</td>
+                        <td>12-12-2022</td>
+                        <td>
+                            <a class="btn btn-warning "><i class="fa fa-pen"></i></a>
+                            <a class="btn btn-danger "><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Orthopedic Center</td>
+                        <td> <img class="img-thumbnail" height="80px" width="80px" src="{% static 'images/mmm.jpg'%}"></td>
+                        <td>surgery</td>
+                        <td>12-12-2022</td>
+                        <td>
+                            <a class="btn btn-warning "><i class="fa fa-pen"></i></a>
+                            <a class="btn btn-danger "><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Pediatric Center</td>
+                        <td> <img class="img-thumbnail" height="80px" width="80px" src="{% static 'images/nnn.jpg'%}"></td>
+                        <td>surgery</td>
+                        <td>12-12-2022</td>
+                        <td>
+                            <a class="btn btn-warning "><i class="fa fa-pen"></i></a>
+                            <a class="btn btn-danger "><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>1</td>
+                        <td>Clinic 1</td>
+                        <td> <img class="img-thumbnail" height="80px" width="80px" src="{% static 'images/health-clinic.png'%}"></td>
+                        <td>surgery</td>
+                        <td>12-12-2022</td>
+                        <td>
+                            <a class="btn btn-warning "><i class="fa fa-pen"></i></a>
+                            <a class="btn btn-danger "><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}
