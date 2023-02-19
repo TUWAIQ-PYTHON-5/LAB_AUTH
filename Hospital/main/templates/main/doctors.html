@@ -1,0 +1,134 @@
+{% extends "main/index.html" %}
+{% block title %} doctors {% endblock %}
+{% load static %}
+
+
+{% block content %}
+
+<body class="sub_page">
+
+  <div class="hero_area">
+
+    <div class="hero_bg_box">
+      <img src="{% static 'images/hero-bg.png' %}" alt="">
+    </div>
+
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <span>
+              Dooha hospital
+            </span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'main:index_page' %}#Home">Home <span
+                    class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:about_page' %}"> About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:departments_page' %}">Departments</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:doctors_page' %}">Doctors</a>
+              </li>
+              {% if request.user.is_authenticated %}
+              <li class="nav-item"><a href="#" class="nav-link">{{ request.user.first_name }}</a></li>
+              <li class="nav-item"><a href="{% url 'accounts:logout_user' %}" class="nav-link">logout</a></li>
+              {% else %}
+              <li class="nav-item"><a href="{% url 'accounts:login_user' %}" class="nav-link">Login</a></li>
+              {% endif %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:contact_page' %}">Contact Us</a>
+              </li>
+              <form class="form-inline">
+                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </form>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+  </div>
+
+  <!-- doctor section -->
+
+  <section class="doctor_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Our Doctors
+        </h2>
+        <p class="col-md-10 mx-auto px-0">
+          Incilint sapiente illo quo praesentium officiis laudantium nostrum, ad adipisci cupiditate sit, quisquam
+          aliquid. Officiis laudantium fuga ad voluptas aspernatur error fugiat quos facilis saepe quas fugit, beatae id
+          quisquam.
+          {% if request.user.is_authenticated %}
+          <br><br>
+          <a href="{% url 'main:add_new_doctor' %}" class="btn btn-danger">add</a></div>
+          {% endif %}
+        </p>
+      </div>
+      
+      <section class="doctor_section layout_padding">
+        <div class="container">
+          <div class="heading_container heading_center">
+      <div class="row">
+        {% for d in all_doctor %}
+        <div class="col-sm-6 col-lg-4 mx-auto container">
+          <div class="box">
+            <div class="img-box">
+              <img src="{{ d.image.url }}" alt="">
+            </div>
+            <div class="detail-box">
+              <div class="social_box">
+                <a href="">
+                  <i class="fa fa-facebook" aria-hidden="true"></i>
+                </a>
+                <a href="">
+                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+                <a href="">
+                  <i class="fa fa-youtube" aria-hidden="true"></i>
+                </a>
+                <a href="">
+                  <i class="fa fa-linkedin" aria-hidden="true"></i>
+                </a>
+              </div>
+              <h5 style="color: black;">
+                {{ d.name }}              
+              </h5>
+              <h6 style="color: black;">
+                {{d.description}}
+              </h6>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
+
+  </section>
+</section>
+
+  <!-- end doctor section -->
+
+</body>
+{% endblock %}
