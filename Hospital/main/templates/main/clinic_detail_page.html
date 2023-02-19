@@ -1,0 +1,18 @@
+{% extends 'main/base.html'%}
+{% load static %}
+{% block title %} clinic of {% endblock %}
+
+{% block contect %}
+
+
+<div class="col-md-4 mb-3">
+      <img src="{{ info.feature_image.url }}" class="mx-auto d-block" alt="{{ info.name }}" style="height: 350px; width: 450px;">
+      <div class="card-body">
+        <h4 class="mt-5">{{ info.name }}</h4>
+        <p class=" mt-2">{{ info.description }}</p>
+    </div>
+  </div>
+
+
+
+{% endblock %}
