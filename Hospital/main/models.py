@@ -31,8 +31,8 @@ class Appointment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     case_description = models.TextField()
     patient_age =  models.IntegerField()
-    appointment_datetime = models.DateTimeField(auto_now_add=True)
-    is_attended = models.BooleanField()
+    appointment_datetime = models.DateTimeField()
+    is_attended = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return f"{self.name} : {self.clinic.name}"

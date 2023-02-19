@@ -1,0 +1,60 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}  {{ clinic.name }} {% endblock %}
+
+
+{% block content %}
+   
+
+<!-- Appointment Start -->
+<h5 class="d-inline-block text-primary text-uppercase border-bottom border-5 fs-2" style="border-color: rgba(256, 256, 256, .3) !important; margin: 20px 0 0 650px;">{{clinic.name}}</h5>
+<div class="container-fluid bg-primary my-5 py-5">
+    <div class="container py-5">
+        <div class="row gx-5">
+            <div class="col-lg-6 container-fluid">
+                <div class="bg-white text-center rounded p-5">
+                    <h1 class="mb-4">Update An Appointment</h1>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="row g-3">
+                            <div class="col-12 ">
+                                <textarea name="case_description"   cols="30" rows="5" class="form-control bg-light border-0" placeholder="Case Description">{{  appointment.case_description  }}</textarea>
+                            </div>
+                            
+                            <div class="col-12">
+                                <input type="text" name="patient_age" value="{{ appointment.patient_age }}" class="form-control bg-light border-0" placeholder="Your Age" style="height: 55px;">
+                            </div>
+                            <div class="col-12 ">
+                                <div class="date"  id="date" data-target-input="nearest" >
+                                    <input type="datetime-local" name="appointment_datetime" value="{{ appointment.appointment_datetime }}"
+                                        class="form-control bg-light border-0 datetimepicker-input"
+                                        data-target="#date" data-toggle="datetimepicker" style="height: 55px;">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <select  name="is_attended" value="{{appointment.is_attended}}" class="form-select bg-light border-0" style="height: 55px;">
+                                    <option value="False" {% if appointment.is_attended == False %} selected {% endif %} >No</option>
+                                    <option value="True" {% if appointment.is_attended == True %} selected {% endif %} >Yes</option>
+                                </select>
+                            </div>
+                        
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Update Appointment</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Appointment End -->
+
+
+   
+
+
+
+{% endblock %}

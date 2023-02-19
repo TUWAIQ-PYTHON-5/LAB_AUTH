@@ -34,6 +34,9 @@
                             </div>
                         </form>
                     </div>
+                    {% if msg %}
+                        <h6 class="text-danger btn btn-primary w-100 py-3" >{{msg}}</h6>
+                    {% endif %}
                 </div>
             </div>
         </div>

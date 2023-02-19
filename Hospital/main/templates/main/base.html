@@ -99,7 +99,7 @@
                           <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown">Mnage</a>
                           <div class="dropdown-menu m-0">                             
                               <a href="{% url 'main:add_clinics_page' %}" class="dropdown-item {% if request.path == '/add_clinics/'  %} active {% endif %}">Clinics</a>
-                              <a href="{% url 'main:manage_appointments_page' %}" class="dropdown-item {% if request.path == '/manage_appointemnts/'  %} active {% endif %}">Appointment</a>
+                              <a href="{% url 'main:manage_appointments_page' %}" class="dropdown-item {% if request.path == '/appointments/'  %} active {% endif %}">Appointments</a>
                           </div>
                       </div>
                       {% endif %}

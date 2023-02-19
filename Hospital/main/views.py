@@ -68,9 +68,9 @@ def delete_clinic(request : HttpRequest, clinic_id):
 def clinic_detail(request : HttpRequest, clinic_id):
 
     clinic = Clinic.objects.get(id=clinic_id)
-    # reviews = Review.objects.filter(game=game)
-                                                     # , "reviews" : reviews
-    return render(request, "main/clinic_detail.html", {"clinic" : clinic})
+    appointments = Appointment.objects.filter(clinic=clinic)
+                                                    
+    return render(request, "main/clinic_detail.html", {"clinic" : clinic, "appointments" : appointments})
 
 
 def search(request : HttpRequest): 
@@ -90,14 +90,73 @@ def search(request : HttpRequest):
 def manage_appointments(request : HttpRequest):
     if not request.user.is_staff:
         return redirect("main:index_page")
-    return render(request, "main/manage_appointments.html")
+    
+    clinics = Clinic.objects.all()
+        
+    return render(request, "main/manage_appointments.html",{"clinics": clinics})
 
 
-def book_appointment(request : HttpRequest):
-    if not request.user.is_authenticated:
-        return redirect("accounts:login_user")
-    return render(request, "main/manage_appointments.html")
 
+def appointments(request : HttpRequest, clinic_id):
+    if not request.user.is_staff:
+        return redirect("main:index_page")
+    
+    clinic = Clinic.objects.get(id=clinic_id)
+    appointments = Appointment.objects.filter(clinic=clinic)
+
+    if request.method == "POST":
+        new_appointment = Appointment(user = request.user, clinic=clinic, case_description = request.POST["case_description"], patient_age = request.POST["patient_age"], appointment_datetime =request.POST["appointment_datetime"])
+        new_appointment.save()
+
+                                                    
+    return render(request, "main/appointments.html", {"clinic" : clinic, "appointments" : appointments})
+
+    # if request.method == "POST":
+    #     new_appointment = Appointment(user = request.user, clinic=request.POST["clinic"], case_description = request.POST["case_description"], patient_age = request.POST["patient_age"])
+    #     new_appointment.save()
+
+    # return render(request, "main/appointments.html",{"clinics": clinics})
+
+def delete_appointment(request : HttpRequest, appointment_id):
+    if not request.user.is_staff:
+        return redirect("main:index_page")
+
+    appointment = Appointment.objects.get(id=appointment_id)
+    appointment.delete()
+    return redirect("main:manage_appointments_page")
+
+
+def book_appointment(request : HttpRequest, clinic_id):
+    # if not request.user.is_authenticated:
+    #     return redirect("accounts:login_user")
+    
+    if request.method == "POST":
+        clinic = Clinic.objects.get(id=clinic_id)
+        new_appointment = Appointment(user = request.user, clinic=clinic, case_description = request.POST["case_description"], patient_age = request.POST["patient_age"], appointment_datetime =request.POST["appointment_datetime"])
+        new_appointment.save()
+
+    return redirect("main:detail_clinic_page", clinic_id)
+
+def update_appointment(request : HttpRequest, appointment_id):
+    if not request.user.is_staff:
+        return redirect("main:index_page")
+
+    appointment = Appointment.objects.get(id=appointment_id)
+    appointment.appointment_datetime = appointment.appointment_datetime.isoformat() #to make it compatible with input value in html
+
+    if request.method == "POST":
+        appointment.case_description = request.POST["case_description"]
+        appointment.patient_age = request.POST["patient_age"]
+        if "appointment_datetime" in request.FILES:
+            appointment.appointment_datetime = request.POST["appointment_datetime"]
+        appointment.appointment_datetime = request.POST["appointment_datetime"] 
+
+        appointment.is_attended = request.POST["is_attended"]
+       
+        appointment.save()
+        return redirect("main:manage_appointments_page")
+
+    return render(request, "main/update_appointment.html", {"appointment" : appointment})
 
 
 

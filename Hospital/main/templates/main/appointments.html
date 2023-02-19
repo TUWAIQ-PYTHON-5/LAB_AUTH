@@ -6,43 +6,15 @@
 
 {% block content %}
    
-
-
-
-<!-- Detail Start -->
-<div class="container-fluid py-5">
-    <div class="container">
-        <div class="row gx-5">
-            <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
-                <div class="position-relative h-100">
-                    <img class="position-absolute w-100 h-100 rounded" src="{{ clinic.feature_image.url }}" style="object-fit: cover;">
-                </div>
-            </div>
-            <div class="col-lg-7">
-                <div class="mb-4">
-                    <h1 class="display-4">{{ clinic.name }}y</h1>
-                    <p class="m-0">Department: {{ clinic.department }}</p>
-                    <p class="m-0">Established at: {{ clinic.established_at }}</p>
-
-                </div>
-                <p>{{ clinic.description }}</p>
-                
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Detail End -->
-
-
-{% if request.user.is_authenticated %}
 <!-- Appointment Start -->
+<h5 class="d-inline-block text-primary text-uppercase border-bottom border-5 fs-2" style="border-color: rgba(256, 256, 256, .3) !important; margin: 20px 0 0 650px;">{{clinic.name}}</h5>
 <div class="container-fluid bg-primary my-5 py-5">
     <div class="container py-5">
         <div class="row gx-5">
             <div class="col-lg-6 container-fluid">
                 <div class="bg-white text-center rounded p-5">
                     <h1 class="mb-4">Book An Appointment</h1>
-                    <form action="{% url  'main:book_appointment_page' clinic.id %}" method="post" enctype="multipart/form-data">
+                    <form action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
 
                         <div class="row g-3">
@@ -74,8 +46,6 @@
 <!-- Appointment End -->
 
 
-
-
 <!-- Appointments Start -->
 <div class="container-fluid py-5">
     <div class="container">
@@ -90,7 +60,15 @@
                     <h4 class="mb-3">Patient Name: {{ appointment.user.first_name }} {{ appointment.user.last_name }}</h4>
                     <h6 class="mb-3"> Appointment On: {{ appointment.appointment_datetime }} </h6>
                     <h6 class="mb-3"> Age: {{ appointment.patient_age }} </h6>
-                    <p class="m-0">case description: {{ appointment.case_description }}</p>
+                    <h6 class="mb-3"> Is Attended: {% if appointment.is_attended %} Yes {% else %} No  {% endif %}</h6>
+                    <p class="m-0">case description: {{ appointment.case_description }} </p>
+
+                    <a  style="padding-right: 50px;" class="btn btn-lg btn-warning rounded-pill" href="{% url 'main:update_oppointment_page' appointment.id %}">
+                        <i style="width: 40px;">Update</i>
+                    </a>
+                    <a style="margin-left: -100px;" class="btn btn-lg btn-danger rounded-pill" href="{% url 'main:delete_appointment_page' appointment.id %}">
+                        <i style="width: 40px;">Delete</i>
+                    </a>
                     
                 </div>
             </div>
@@ -102,13 +80,6 @@
     </div>
 </div>
 <!-- Appointments End -->
-{% endif %}
-
-
-
-
-
-
 
 
 {% endblock %}
