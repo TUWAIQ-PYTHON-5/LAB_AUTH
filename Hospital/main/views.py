@@ -10,8 +10,6 @@ def index(request : HttpRequest):
     clinics = Clinic.objects.all()
     return render(request, "main/index.html",{"clinics": clinics})
 
-def clinic_detail(request : HttpRequest):
-    return render(request, "main/clinic_detail.html")
 
 def about(request : HttpRequest):
     return render(request, "main/about.html")
@@ -69,6 +67,10 @@ def clinic_detail(request : HttpRequest, clinic_id):
 
     clinic = Clinic.objects.get(id=clinic_id)
     appointments = Appointment.objects.filter(clinic=clinic)
+    if request.user.is_authenticated :
+        appointmentsUser = appointments.filter(user = request.user)
+        return render(request, "main/clinic_detail.html", {"clinic" : clinic, "appointments" : appointmentsUser})
+
                                                     
     return render(request, "main/clinic_detail.html", {"clinic" : clinic, "appointments" : appointments})
 
