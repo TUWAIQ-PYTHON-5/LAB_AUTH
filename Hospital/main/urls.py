@@ -19,6 +19,8 @@ urlpatterns = [
     path("search/", views.search_clinc, name="search_clinc"),
 
 
+    path("manage_appointemnts/", views.manage_appointments, name="manage_appointments_page"),
+    path("book_appointemnt/", views.book_appointment, name="book_appointment_page"),
     
 
 

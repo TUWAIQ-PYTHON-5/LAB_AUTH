@@ -154,3 +154,15 @@ def search_clinc(request : HttpRequest):
 # Appo
 
 
+
+def manage_appointments(request : HttpRequest):
+    if not request.user.is_staff:
+        return redirect("accounts:login_user")
+    return render(request, "main/manage_appointments.html")
+
+
+def book_appointment(request : HttpRequest):
+    if not request.user.is_authenticated:
+        return redirect("accounts:login_user")
+    
+    return render(request, "main/manage_appointments.html")

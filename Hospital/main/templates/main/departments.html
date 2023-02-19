@@ -80,7 +80,14 @@
               <a href="{% url 'main:add_new_clinc' %}" class="btn btn-danger">add</a></div>
               {% endif %}
 
+              <br><br>
+              <a href="{% url 'main:book_appointment_page' %}" class="btn btn-primary">
+                Appointment
+              </a>
+
             </p>
+
+
 
           </div>  
 
@@ -114,13 +121,14 @@
                   </div>   
                   {% endfor %}
               </div>
+              
             </section> 
 
 
-            
         </div>
     </div>
   <br> <br>
+
   </section>
 
 </body>
