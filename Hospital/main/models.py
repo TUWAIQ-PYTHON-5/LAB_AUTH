@@ -1,11 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 
 class Clinic (models.Model):
     name = models.CharField(max_length=512)
-    
+    feature_image=models.ImageField(upload_to="images/")
     description = models.TextField()
     HeartCenter = 'HC'
     NeuroscienceCenter = 'NC'

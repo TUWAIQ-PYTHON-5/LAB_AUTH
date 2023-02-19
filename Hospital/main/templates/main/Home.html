@@ -33,84 +33,24 @@
             <div class="divider-custom-line"></div>
         </div>
         <div class="row justify-content-center">
+            {% for i in Clinics %}
+            
+            
+            
             <div class="col-md-6 col-lg-4 mb-5">
                 <div class="portfolio-item mx-auto">
                     <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                         <div class="row">
-                            <h6 class="text-white">Name : Heart Center</h6>
-                            <h6 class="text-white">Department : Surgery</h6>
-                            <h6 class="text-white">Established At : 10-10-2022</h6>
+                            <h6 class="text-white">{{i.name}}</h6>
+                            <h6 class="text-white">{{i.description}}</h6>
+                            
                             <a class="btn btn-warning btn-view"><i class="fa fa-eye"></i> View</a>
                         </div>
                     </div>
-                    <img class="img-fluid customimage" src="{% static 'images/hart.jpg' %}" alt="..." />
+                    <img class="img-fluid customimage" src="{{ i.feature_image.url }}" alt="..." />
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4 mb-5">
-                <div class="portfolio-item mx-auto">
-                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                        <div class="row">
-                            <h6 class="text-white">Name : Neuroscience Center</h6>
-                            <h6 class="text-white">Department : Surgery</h6>
-                            <h6 class="text-white">Established At : 10-10-2022</h6>
-                            <a class="btn btn-warning btn-view"><i class="fa fa-eye"></i> View</a>
-                        </div>
-                    </div>
-                    <img class="img-fluid customimage" src="{% static 'images/vvv.jpg' %}" alt="..." />
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-5">
-                <div class="portfolio-item mx-auto">
-                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                        <div class="row">
-                            <h6 class="text-white">Name : Obesity Center</h6>
-                            <h6 class="text-white">Department : Surgery</h6>
-                            <h6 class="text-white">Established At : 10-10-2022</h6>
-                            <a class="btn btn-warning btn-view"><i class="fa fa-eye"></i> View</a>
-                        </div>
-                    </div>
-                    <img class="img-fluid customimage" src="{% static 'images/vit.jpg' %}" alt="..." />
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-5">
-                <div class="portfolio-item mx-auto">
-                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                        <div class="row">
-                            <h6 class="text-white">Name : Eye Center</h6>
-                            <h6 class="text-white">Department : Surgery</h6>
-                            <h6 class="text-white">Established At : 10-10-2022</h6>
-                            <a class="btn btn-warning btn-view"><i class="fa fa-eye"></i> View</a>
-                        </div>
-                    </div>
-                    <img class="img-fluid customimage" src="{% static 'images/eys.jpg' %}" alt="..." />
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-5">
-                <div class="portfolio-item mx-auto">
-                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                        <div class="row">
-                            <h6 class="text-white">Name :Orthopedic Center</h6>
-                            <h6 class="text-white">Department : Surgery</h6>
-                            <h6 class="text-white">Established At : 10-10-2022</h6>
-                            <a class="btn btn-warning btn-view"><i class="fa fa-eye"></i> View</a>
-                        </div>
-                    </div>
-                    <img class="img-fluid customimage" src="{% static 'images/mmm.jpg'%}" alt="..." />
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-5">
-                <div class="portfolio-item mx-auto">
-                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                        <div class="row">
-                            <h6 class="text-white">Name : Pediatric Center</h6>
-                            <h6 class="text-white">Department : Surgery</h6>
-                            <h6 class="text-white">Established At : 10-10-2022</h6>
-                            <a class="btn btn-warning btn-view"><i class="fa fa-eye"></i> View</a>
-                        </div>
-                    </div>
-                    <img class="img-fluid customimage" src="{% static 'images/nnn.jpg'%}" alt="..." />
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>

@@ -1,6 +1,6 @@
 {% extends 'main/base.html' %}
 
- {% block title %} Add a New Post {% endblock %}
+ {% block title %} update clinic {% endblock %}
 
 
 {% block content %}
@@ -9,30 +9,51 @@
 
 
 <div class="container">
-
-  <form action="" method="POST" class="form-inline" enctype="multipart/form-data">
+    <h2>Add a New Clinic</h2>
+    
+    <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-
-
-    <label class="form-label"><h5>Name </h5></label>
-    <input type="text" name="name" class="form-control"  value="{{ clinic.name }}"/>
-    <br>
-    <label class="form-label"><h5>Description</h5></label>
-    <textarea class="form-control" name="description"> {{ clinic.description  }} </textarea>
-    <br>
-    <div class="mt-3">
-      <label>Choose File:</label>
-      <input type="file" name="image" class="form-control"/>
+    
+        <div class="mt-3">
+          <label class="form-label">name</label>
+          <input value="{{ updated_clinec.name }}" type="text" name="name" class="form-control" />
+        </div>
+        <div class="mt-3">
+            <label>Choose File:</label>
+            <input value="{{ updated_clinec.feature_image }}" type="file" name="feature_image" class="form-control"/>
+          </div>
+    
+        <div class="mt-3">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" name="description">{{ updated_clinec.description }}</textarea>
+        </div>
+    
+        <div class="mt-3">
+          <label class="form-label">departments</label>
+          <select name="departments" class="form-select" aria-label="Default select example">
+              <option selected>Open this select menu</option>
+              <option value="HeartCenter" {% if updated_clinec.departments == HeartCenter %} selected {% endif %}>Heart Center</option>
+              <option value="NeuroscienceCenter"{% if updated_clinec.departments == NeuroscienceCenter %} selected {% endif %}>Neuroscience Center</option>
+              <option value="ObesityCenter" {% if updated_clinec.departments == ObesityCenter %} selected {% endif %}>Obesity Center</option>
+              <option value="EyeCenter" {% if updated_clinec.departments == EyeCenter %} selected {% endif %}>Eye Center</option>
+              <option value="OrthopedicCenter" {% if updated_clinec.departments == OrthopedicCenter %} selected {% endif %} >Orthopedic Center</option>
+            </select>
+          </div>
+        
+          <div class="mt-3">
+            <label class="form-label">established_at</label>
+            <input value="{{updated_clinec.established_at }}" type="date" class="form-control" name="established_at"  />
+          </div>
+    
+          
+    
+          <br/>
+          <input type="submit" class="btn btn-primary" value="update Clinic" />
+    
+        
+    
+    </form>
+    
     </div>
-  <br>
-    <br>
-    <div class="">
-        <input type="submit" class="btn btn-primary" value="Update" />
-        <a class="btn btn-secondary" href="{% url 'url_main:index_page' %}" role="button">Back</a>
-    </div>
-  </form>
 
-  
-</div>
-
-{% endblock %}
+      {% endblock %}

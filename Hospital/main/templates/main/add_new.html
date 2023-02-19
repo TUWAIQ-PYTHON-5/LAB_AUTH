@@ -15,25 +15,54 @@
         <!-- Contact Section Form-->
         <div class="row justify-content-center">
             <div class="col-lg-8 col-xl-7">
-                <form>
-                    <div class="form-floating mb-3">
-                        <input class="form-control" id="name" type="text">
-                        <label for="name">clinic name</label>
+                <form><div class="container">
+                    <h2>Add a New Clinic</h2>
+                    
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                    
+                        <div class="mt-3">
+                          <label class="form-label">name</label>
+                          <input type="text" name="name" class="form-control" />
+                        </div>
+                        <div class="mt-3">
+                            <label>Choose File:</label>
+                            <input type="file" name="feature_image" class="form-control"/>
+                          </div>
+                    
+                        <div class="mt-3">
+                          <label class="form-label">Description</label>
+                          <textarea class="form-control" name="description"></textarea>
+                        </div>
+                    
+                        <div class="mt-3">
+                          <label class="form-label">departments</label>
+                          <select name="departments" class="form-select" aria-label="Default select example">
+                              <option selected>Open this select menu</option>
+                              <option value="HeartCenter">Heart Center</option>
+                              <option value="NeuroscienceCenter">Neuroscience Center</option>
+                              <option value="ObesityCenter">Obesity Center</option>
+                              <option value="EyeCenter">Eye Center</option>
+                              <option value="OrthopedicCenter">Orthopedic Center</option>
+                            </select>
+                          </div>
+                        
+                          <div class="mt-3">
+                            <label class="form-label">established_at</label>
+                            <input type="date" class="form-control" name="established_at"  />
+                          </div>
+                    
+                          
+                    
+                          <br/>
+                          <input type="submit" class="btn btn-primary" value="New Clinic" />
+                    
+                        
+                    
+                    </form>
+                    
                     </div>
-                    <div class="form-floating mb-3">
-                        <input class="form-control" id="Specialization" type="text">
-                        <label for="Specialization"> Specialization </label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input class="form-control" id="date" type="date">
-                        <label for="date">Established At</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input class="form-control"  type="file" required id="file">
-                        <label for="file">Image</label>
-                    </div>
-                    <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Send</button>
-                </form>
+                
             </div>
         </div>
     </div>

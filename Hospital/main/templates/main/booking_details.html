@@ -4,9 +4,9 @@
 {% block title %} HOME PAGE {% endblock %}
 
 {% block content %}
+<h1>this appointment is for {{ name_of_patient }}</h1>
+{% for i in show_booked %}
+<h1>{{i.case_description}}</h1>
 
-
-
-
-
+{% endfor %}
 {% endblock %}
