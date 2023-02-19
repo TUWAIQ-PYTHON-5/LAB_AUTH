@@ -12,7 +12,7 @@
           <h5 class="card-title"><a href="{% url 'main:detail_page' clinic.id %}" class="text-decoration-none"><h4 class="mt-4">{{ clinic.name }}</h4></a>
           </h5>
           <p class="card-text"><strong>Description :</strong><br> {{ clinic.description}}</p><br>
-       <p><strong>Feature image :</strong><br> <img src="{{item.image_field.urls}}"/> </p><br>
+       <p><strong>Feature image :</strong><br> <img src="{{clinic.image_field.urls}}"/> </p><br>
       <p><strong>Department :</strong><br>{{ clinic.department }}</p><br>
     <p><strong >established at :</strong><br> {{clinic.established_at}}</p>
 
