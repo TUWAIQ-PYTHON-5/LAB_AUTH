@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+<div class="container">
+    {% if toFind %}
+    <h2> The Results for {{toFind}}</h2>
+    {% endif %}
+    <div class="row">
+        {% for clinic in result %}
+            
+            <div class="col-3">
+                <div class="p-4 shadow" >
+                    <a href="{% url 'main:clinicDetails' clinic.id %}"><h4>{{ clinic.name }}</h4></a>
+                    <p>{{ clinic.description }}</p>
+                    <h6>Place: {{ clinic.department }}</h6>
+                </div>
+            </div>
+        {% endfor %}
+
+
+    </div>
+</div>
+{% endblock %}

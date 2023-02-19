@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Bloging {% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+<h2>Login here!</h2>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    {% if msg %}
+    <h5 class="text-danger"> {{msg}} </h5>
+    {% endif %}
+    <label class="form-label">Username</label>
+    <input type="text" name="username" class="form-control" />
+
+    <label class="form-label">Password</label>
+    <input class="form-control" name="password" type="password"/>
+
+      <br/>
+      <input type="submit" class="btn btn-primary" value="Login" />
+
+</form>
+</div>
+
+
+
+{% endblock %}
