@@ -1,0 +1,187 @@
+{% extends 'main/base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block content %}
+<style>
+body {
+    font-family: Arial;
+    font-size: 16px;
+    padding: 6px;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  .row {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    margin: 0 -16px;
+  }
+  
+  
+  
+  .col-50 {
+    -ms-flex: 50%; /* IE10 */
+    flex: 50%;
+  }
+  
+  .col-75 {
+    -ms-flex: 75%; /* IE10 */
+    flex: 100%;
+  }
+  
+  .col-25,
+  .col-50,
+  .col-75 {
+    padding: 0 16px;
+  }
+  
+  .container {
+    background-color: #f2f2f2;
+    padding: 5px 20px 15px 20px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+     max-width:500px;
+  margin:auto;
+  }
+  
+  .container1 {
+    background-color: #f2f2f2;
+    padding: 5px 20px 15px 20px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+     max-width:600px;
+  margin:auto;
+  }
+  input[type=text] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  input[type=datetime-local] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  
+  input[type=email],textarea, select {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  input[type=number] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  input[type=text] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  input[type=time] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  input[type=date] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  
+  
+  .btn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 17px;
+  }
+  
+  .btn:hover {
+    background-color: #45a049;
+  }
+  
+  
+  
+  
+  
+  /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+  @media (max-width: 400px) {
+    .row {
+      flex-direction: column;
+    }
+    .col-25 {
+      margin-bottom: 20px;
+    }
+  }
+</style>
+<body>
+    <center>
+    <h3 style="padding-top: 10%;">Book an Appointment</h3>
+    
+    </center>
+    <div class="container">
+    
+        
+      <form action="" method="post">
+        {% csrf_token %}
+        <label class="form-label"><strong>Patient name :</strong></label>
+        <input type="text" name="user" value="user" placeholder="Patient name " required>
+        <label class="form-label"><strong>Clinic name :</strong></label>
+        <input type="text"  name="clinic_name" placeholder="Clinic name ..." required>
+
+        <label class="form-label"><strong>datetime</strong></label>
+        <select name="appointment_datetime" class="form-select" aria-label="Default select example" required>
+            <option selected> Appointment datetime</option>
+            <option value="3 PM">3 PM </option>
+            <option value="3:30 PM">3:30 PM</option>
+            <option value="4 PM">4 PM</option>
+            <option value="4:30 PM">4:30 PM</option>
+            <option value="5 PM">5 PM</option>
+            <option value="6 PM">6 PM</option>
+            <option value="6:30 PM">6:30 PM</option>
+            <option value="7 PM">7 PM</option>
+            <option value="7:30 PM">7:30 PM</option>
+          </select>
+          <label class="form-label"><strong>Patient age :</strong></label>
+          <input type="number"  name="patient_age" placeholder="patient_age..." required>
+
+         
+          
+        <center>
+        <input type="submit" value="Book"  class="btn">
+        </center>
+      </form>
+    </div>
+    
+    </body>
+    </html>
+    
+{% endblock %}

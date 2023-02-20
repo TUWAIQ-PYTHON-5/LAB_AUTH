@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   {% block title %} <title>base </title>{% endblock %}
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <body style= "background-color:rgba(0, 0, 255, 0.233);">
+  
+        <div class="fixed-top">
+    <nav class="navbar navbar-light navbar-img" style="background-color: white; padding-bottom: 2%;">
+      
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'main:home_page' %}">Home</a>
+            </li>
+            {% if perms.main.add_clinic %}
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'main:add_clinic' %}"> Add Clinic</a>
+            </li>
+            {% endif %}
+            {% if perms.main.add_appointment %}
+            <li class="nav-item">
+              <a class="nav-link text-dark"  href="{% url 'main:add_appointment' %}"> Add Appointment</a>
+            </li>
+            {% endif %}
+            {% if perms.main.show_appointment %}
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'main:show_appointment' %}"> View Appointment</a>
+            </li>
+            {% endif %}
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'main:prev_appoint' %}"> View Booked Appointment</a>
+            </li>
+        
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'main:book_appointment'%}">Book an appointment</a>
+            </li>
+        {% endif %}
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="#">{{request.user.username}}</a></li>
+              <li class="nav-item">
+                <a class="nav-link text-dark" href="{% url 'accounts:logout_user' %}">Logout</a></li>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link text-dark" href="{% url 'accounts:login_user' %}">Login</a></li>
+              
+                  {% endif %}
+          </ul>
+          <form class="d-flex" role="search" action="{% url 'main:search_page' %}" method="post">
+            {% csrf_token %}
+
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched">
+            <button class="btn btn-outline-primary" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+      </nav>
+      </div>
+      {% block content %}
+      <div class="imageContainr " style="padding-top: 5%;">
+        <img src="{% static 'image/h.png'%}"style="width: 100%; height:100%;position:fixed;"alt="potoabout" >
+        <div  class="container-fluid" style="padding-top: 7px; text-align: center; caption-side: top;">
+          <br><br>
+    
+
+    
+    {% endblock %}
+    </html>
