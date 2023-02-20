@@ -27,11 +27,11 @@ class Appointment(models.Model):
     ("7 PM", "7 PM"),
     ("7:30 PM", "7:30 PM"),
 )
-     clinic_name=models.CharField(max_length=1024)
+     clinic=models.ForeignKey(Clinic,on_delete=models.CASCADE)
      user=models.ForeignKey(User,on_delete=models.CASCADE)
      case_description= models.TextField()
      patient_age=models.IntegerField()
-     appointment_datetime=models.CharField(max_length=10,choices=TIME_CHOICES,default="3 PM")
+     appointment_datetime=models.DateTimeField()
      is_attended=models.BooleanField(default=False)
     
 

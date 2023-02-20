@@ -8,7 +8,7 @@ from .models import Clinic,Appointment
 class ClinicAdmin(admin.ModelAdmin):
      list_display = ['name','description','feature_image','department','established_at',]
 class AppointmentAdmin(admin.ModelAdmin):
-     list_display = ('user','clinic_name','case_description','patient_age','appointment_datetime','is_attended')
+     list_display = ('user','clinic','case_description','patient_age','appointment_datetime','is_attended')
 
 
 admin.site.register(Clinic, ClinicAdmin)

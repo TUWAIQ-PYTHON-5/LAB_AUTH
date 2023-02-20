@@ -61,7 +61,8 @@ def delete_clinic(request : HttpRequest, clinic_id):
 
 def add_appointment(request:HttpRequest):
     if request.method == "POST":
-        new_appointment= Appointment(user=request.user,clinic_name=request.POST["clinic_name"],case_description = request.POST["case_description"],patient_age=request.POST["patient_age"],appointment_datetime=request.POST["appointment_datetime"])
+
+        new_appointment= Appointment(user=request.user,clinic_name= Clinic.objects.filter(clinic_name='clinic_name'),case_description = request.POST["case_description"],patient_age=request.POST["patient_age"],appointment_datetime=request.POST["appointment_datetime"])
         new_appointment.save()
         return redirect("main:home_page")
 
