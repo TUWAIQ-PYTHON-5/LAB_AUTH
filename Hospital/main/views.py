@@ -21,17 +21,18 @@ def clinic_details(request:HttpRequest,clinic_id):
 @login_required(login_url='/accounts/login/')
 def appointment_page(request:HttpRequest):
     clinics = Clinic.objects.all()
-    if 'clinic_id' in request.POST:
-            Appointment(
-            clinic = request.POST['clinic_id'],
-            user = request.POST['user'],
-            case_description = request.POST['case_description'],
-            patient_age = request.POST['patient_age'],
-            appointment_datetime = request.POST['appointment_datetime'],
-            
-            ).save()
-            return redirect('main:home_page')
-    return render(request, 'main/appointment_page.html',{'clinics':clinics})
+    if request.method == 'POST':
+        clinic_name = request.POST['clinic_select']
+        clinic = Clinic.objects.get(name=clinic_name)
+        Appointment(
+            clinic=clinic,
+            user=request.user,
+            case_description=request.POST['case_description'],
+            patient_age=request.POST['patient_age'],
+            appointment_datetime=request.POST['appointment_datetime'],
+        ).save()
+        return redirect('main:home_page')
+    return render(request, 'main/appointment_page.html', {'clinics':clinics})
 
 def save_appointment(request:HttpRequest):
     pass

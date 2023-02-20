@@ -15,7 +15,7 @@
                 <div class="mb-3">
                     <select class="form-select" name="clinic_select" id="clinic_select">
                         {% for clinic in clinics %}
-                        <option name="{{ clinic.name }}">{{ clinic.name }}</option>
+                        <option name="{{clinic.id}}">{{ clinic.name }}</option>
                         {% endfor %}
                     </select>
                 </div>
