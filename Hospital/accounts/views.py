@@ -30,7 +30,7 @@ def user_register(request:HttpRequest):
         new_user = User.objects.create_user(username=request.POST["username"], email=request.POST["email"], password=request.POST["password"], first_name = request.POST["first_name"], last_name = request.POST["last_name"])
         new_user.save()
 
-        return redirect(request,"accounts/login.html")
+        return redirect('accounts:user_login')
 
 
     return render(request, "accounts/register.html")
