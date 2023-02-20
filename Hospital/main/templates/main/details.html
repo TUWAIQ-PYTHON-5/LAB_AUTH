@@ -1,0 +1,72 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %} HOME PAGE {% endblock %}
+
+{% block content %}
+section class="page-section portfolio" id="portfolio">
+    <div class="container">
+        <!-- Portfolio Section Heading-->
+        <h5 class="page-section-heading text-center text-uppercase text-secondary mb-0">Clinic Details</h5>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-home"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4 mb-5">
+                <div class="portfolio-item mx-auto">
+                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                        <div class="row">
+                            <h6 class="text-white">Name : Clinic 1</h6>
+                            <h6 class="text-white">Department : Surgery</h6>
+                            <h6 class="text-white">Established At : 10-10-2022</h6>
+                        </div>
+                    </div>
+                    <img class="img-fluid customimage" src="images/health-clinic.png" alt="..." />
+                </div>
+                <p class="mt-3">Description : des here des here des here des here des here des here des here des here des here des here des here</p>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-5">
+                <h4 class="text-center">Appointments</h4>
+                <table class="table table-bordered paleBlueRows col-md-12">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Appointment Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>12-12-2023 - 12:00 PM</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>12-12-2023 - 12:00 PM</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>12-12-2023 - 12:00 PM</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>12-12-2023 - 12:00 PM</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+           <form>
+               <div class="col-md-12 text-center">
+                   <div class="col-md-6 offset-3 mb-3">
+                       <input required type="datetime-local" name="date_time" class="form-control">
+                   </div>
+                   <button type="submit" class="btn btn-primary btn-view"><i class="fa fa-calender"></i> Book Now</button>
+
+               </div>
+           </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

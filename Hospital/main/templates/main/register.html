@@ -1,0 +1,42 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %} HOME PAGE {% endblock %}
+
+{% block content %}
+
+<section class="page-section" id="contact">
+    <div class="container">
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Register</h2>
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Contact Section Form-->
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-xl-7">
+                <form>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="name" type="text">
+                        <label for="name">Full name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="email" type="email">
+                        <label for="email">Email address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="phone" type="tel">
+                        <label for="phone">Phone number</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control"  type="password" required id="password">
+                        <label for="password">password</label>
+                    </div>
+                    <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
