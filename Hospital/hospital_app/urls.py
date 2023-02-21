@@ -17,6 +17,6 @@ urlpatterns = [
     path("Clinic/delete/<clinic_id>", views.delete, name="delete"),
     path("Appointment/delete/<appointment_id>", views.appointments_delete, name="appointments_delete"),
     path("Appointment/update/<appointment_id>", views.appointments_update, name="appointments_update"),
-   
+   user.has_perm('conenttypes')
     # path("Contact/" , views.contact , name= "contact_page"),
 ]

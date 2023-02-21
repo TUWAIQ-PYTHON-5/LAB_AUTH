@@ -37,7 +37,7 @@ class Clinic(models.Model):
 class Appointment(models.Model):
     clinic = models.ForeignKey(Clinic, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    patient_age = models.ImageField(default= 20)
+    patient_age = models.IntegerField(default= 20)
     date  = models.DateTimeField( )
     description = models.TextField()
     is_attended  = models.BooleanField(default=False)
