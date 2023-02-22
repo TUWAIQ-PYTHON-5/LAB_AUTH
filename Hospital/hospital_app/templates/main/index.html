@@ -1,0 +1,40 @@
+
+{% extends 'main/base.html' %}
+
+{% block title %}   {% endblock %}
+
+
+{% block content %}
+
+
+<div class="container">
+
+    <div class="row">
+        {% for clinic in clinics %}
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <div class="card">
+            <div class="card-body">
+              <img src="{{ clinic.image.url }}" class="w-35" style="width: 200px; height: 150px;" />
+              <h5 class="card-title"> {{clinic.name}}</h5>
+              <p class="card-text"> {{clinic.description}}</p>
+              <p class="card-text"> {{clinic.department}}</p>
+              <a href="{% url 'url_main:clinic_page' clinic.id%}" class="btn btn-primary">More Info</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}    
+      </div>
+
+
+   
+
+
+ </div>
+
+{% endblock %}
+   
+   
+   
+   
+   
+

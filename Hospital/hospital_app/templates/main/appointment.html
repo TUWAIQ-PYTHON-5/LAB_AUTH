@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+
+{% block title %}  {% endblock title %}
+
+{% block content %}
+
+
+
+<div class="container">
+    <div class="row">
+        {% for appointment in appointments %}
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <div class="card">
+            <div class="card-body">
+             <h5 class="card-title"> Clinic : {{appointment.clinic}}</h5>
+             <p class="card-text"> Name : {{appointment.user}}</p>
+            <p class="card-text">  Date : {{appointment.date}}</p>
+              <p class="card-text">Case : {{appointment.description}}</p>
+              <p class="fa fa-check" aria-hidden="true">is attended :   </p>
+             
+              {% if request.user.is_staff %}
+              <div class="d-flex ">
+                  <a href="{% url 'url_main:appointments_update' appointment.id %}" class="btn btn-primary">update</a> &nbsp; 
+                  <a href="{% url 'url_main:appointments_delete' appointment.id %}" class="btn btn-danger">delete</a>&nbsp; 
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}    
+      </div>
+
+    
+    
+</div>
+
+
+{% endblock %}

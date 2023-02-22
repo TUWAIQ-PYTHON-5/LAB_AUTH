@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+
+{% block title %}  {% endblock title %}
+
+{% block content %}
+
+
+
+<div class="container">
+    <a href="{% url 'url_main:add_clinic'%}" class="btn btn-success">Add Clinic</a>
+    <br>
+    <br>
+    <div class="row">
+        {% for clinic in clinics %}
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"> {{clinic.name}}</h5>
+              <p class="card-text"> {{clinic.description}}</p>
+             
+              <div class="d-flex ">
+                  <a href="{% url 'url_main:update' clinic.id %}" class="btn btn-primary">update</a> - 
+                  <a href="{% url 'url_main:delete' clinic.id %}" class="btn btn-danger">delete</a>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        {% endfor %}    
+      </div>
+
+    
+    
+</div>
+
+
+{% endblock %}
