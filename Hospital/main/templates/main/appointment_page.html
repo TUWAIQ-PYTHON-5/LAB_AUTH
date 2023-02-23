@@ -1,0 +1,70 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mt-5 mb-3">New Appointment</h1>
+
+    <form method="POST" style="margin-top: 10%" action="">
+        {% csrf_token %}
+        
+        <div class="mb-3 row">
+            <label  class="col-sm-2 col-form-label">Clinic Name</label>
+            <div class="col-sm-10">
+                <div class="mb-3">
+                    <select class="form-select" name="clinic_select" id="clinic_select">
+                        {% for clinic in clinics %}
+                        <option name="{{clinic.id}}">{{ clinic.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label  class="col-sm-2 col-form-label">UserName</label>
+            <div class="col-sm-10">
+                <input readonly class="form-control-plaintext" name="user" value="{{request.user.username}}">
+            </div>
+        </div>
+        
+        <div class="mb-3 row">
+            <label  class="col-sm-2 col-form-label">Full Name</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" value="{{request.user.first_name}} {{request.user.last_name}}">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label  class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" value="{{request.user.email}}">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label  class="col-sm-2 col-form-label">case Description</label>
+            <div class="col-sm-10">
+              <input type="text"  class="form-control" name="case_description">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label  class="col-sm-2 col-form-label">patient Age</label>
+            <div class="col-sm-10">
+              <input type="number"  class="form-control" name="patient_age">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="start">Appointment date:</label>
+            <input type="datetime-local" name="appointment_datetime" min="2023-01-01" max="2024-12-31">
+        </div>
+
+        
+        <button type="submit" class="btn btn-primary mt-3">New Appointment</button>
+    </form>
+
+</div>
+{% endblock %}

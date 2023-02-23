@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+<section id="hero" class="d-flex align-items-center mt-5">
+    <div class="container">
+      <h1>Welcome to Hospital</h1>
+      <h2>Make Make an</span> Appointment to see a Doctor</h2>
+      
+      <a href="{% url 'main:appointment_page' %}" class="btn-get-started scrollto">Make an</span> Appointment</a>
+
+    </div>
+  </section>
+
+
+{% endblock%}

@@ -1,0 +1,28 @@
+{% extends 'main/base.html'%}
+{% load static %}
+{% block title %}{{ clinic_info.name }} {% endblock %}
+
+{% block content %}
+<div class=" justify-content-center" style="margin-top: 10%">
+      <img src="{{ clinic_info.feature_image.url }}" class="mx-auto d-block" alt="{{ clinic_info.name }}" style="height: 350px; width: 450px;">
+      <div class="justify-content-center" style="margin-left: 35%; margin-right: 35%; margin-bottom: 20%;">
+        <h4 class="mt-5 mb-3">{{ clinic_info.name }}</h4>
+        <p class=" mt-2 mb-5">{{ clinic_info.description }}</p>
+        
+        {% if request.user.is_authenticated %}
+        <div class="">
+          <a href="{% url 'main:appointment_page' %}" class="btn btn-primary">Make Appointment</a>
+        </div>
+        {% else %}
+        <div class="border p-3 mt-3 ">
+            <p>To Make Appointment <a href="{% url 'accounts:user_login'%}">Sing In</a> or <a href="{% url 'accounts:user_register'%}">Sign Up</a></p>
+        </div>
+        {% endif %}
+      
+
+      </div>
+    
+</div>
+
+
+{% endblock %}
